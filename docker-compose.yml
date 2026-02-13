@@ -1,0 +1,54 @@
+services:
+  db:
+    image: postgres:16
+    container_name: filehub-db
+    environment:
+      POSTGRES_DB: filehub
+      POSTGRES_USER: filehub
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - ./data/pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U filehub -d filehub" ]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  app:
+    build: ./app
+    container_name: filehub-app
+    environment:
+      DB_HOST: db
+      DB_NAME: filehub
+      DB_USER: filehub
+      DB_PASSWORD: secret
+      DB_PORT: "5432"
+    volumes:
+      - ./app:/app
+      - ./data/uploads:/data/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    expose:
+      - "8000"
+    develop:
+      watch:
+        - path: ./app/requirements.txt
+          action: rebuild
+        - path: ./app
+          action: sync
+          target: /app
+          ignore:
+            - ./app/**/__pycache__/
+            - ./app/files/migrations/
+    command: [ "bash", "-lc", "python manage.py runserver 0.0.0.0:8000 --noreload" ]
+  nginx:
+    image: nginx:stable
+    container_name: filehub-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./data/uploads:/var/www/uploads:ro
+    depends_on:
+      - app

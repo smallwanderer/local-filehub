@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}Files · MyFileHub{% endblock %}
+
+{% block content %}
+<section style="margin-top: 1.2rem;">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; gap: 1rem;">
+        <div>
+            <h2 style="margin-bottom:.2rem;">내 파일</h2>
+            <p class="muted" style="margin:0;">파일을 검색하고, 업로드/관리할 수 있습니다.</p>
+        </div>
+        <div>
+            <a role="button" href="/files/upload/">+ 업로드</a>
+        </div>
+    </div>
+
+    <form method="get" style="margin-top: 1rem;">
+        <div style="display:flex; gap:.6rem; align-items:center;">
+            <input name="q" value="{{ q }}" placeholder="파일명/설명 검색 (예: report, 이미지, 메모)">
+            <button type="submit" class="secondary">검색</button>
+            <a href="/files/" role="button" class="secondary">초기화</a>
+        </div>
+
+        <!-- 향후 확장용(필터/정렬 UI 틀) -->
+        <details style="margin-top:.6rem;">
+            <summary class="muted">필터/정렬 (UI 틀)</summary>
+            <div style="display:flex; gap:1rem; margin-top:.6rem; flex-wrap:wrap;">
+                <label>
+                    타입
+                    <select disabled>
+                        <option>전체</option>
+                        <option>문서</option>
+                        <option>이미지</option>
+                        <option>압축</option>
+                    </select>
+                </label>
+                <label>
+                    정렬
+                    <select disabled>
+                        <option>최신순</option>
+                        <option>이름순</option>
+                        <option>용량순</option>
+                    </select>
+                </label>
+                <label>
+                    태그
+                    <input disabled placeholder="예: pdf,img">
+                </label>
+            </div>
+            <small class="muted">지금은 UI만 있고, 동작은 나중에 붙입니다.</small>
+        </details>
+    </form>
+
+    <article style="margin-top: 1rem;">
+        {% if files %}
+        <figure>
+            <table role="grid">
+                <thead>
+                    <tr>
+                        <th>파일</th>
+                        <th>설명</th>
+                        <th style="white-space:nowrap;">용량</th>
+                        <th style="white-space:nowrap;">업로드</th>
+                        <th style="white-space:nowrap;">액션</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for f in files %}
+                    <tr>
+                        <td>
+                            <strong>{{ f.name }}</strong><br>
+                            <small class="muted">id={{ f.id }}</small>
+                            {% if f.tags %}
+                            <div style="margin-top:.3rem;">
+                                {% for t in f.tags %}<span class="chip">{{ t }}</span>{% endfor %}
+                            </div>
+                            {% endif %}
+                        </td>
+                        <td>{{ f.desc }}</td>
+                        <td>{{ f.size }}</td>
+                        <td>{{ f.uploaded_at }}</td>
+                        <td class="row-actions">
+                            <a href="/files/{{ f.id }}/">보기</a>
+                            <a href="#" onclick="return false;">다운로드</a>
+                            <a href="#" onclick="return false;" class="muted">삭제</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </figure>
+        {% else %}
+        <p class="muted">검색 결과가 없습니다.</p>
+        {% endif %}
+    </article>
+</section>
+{% endblock %}

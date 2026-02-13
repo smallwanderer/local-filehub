@@ -1,0 +1,183 @@
+[
+    {
+        "id": 1,
+        "name": "report_v1.pdf",
+        "size": 1258291,
+        "uploaded_at": "2026-02-13",
+        "tags": [
+            "pdf"
+        ],
+        "desc": "1차 보고서"
+    },
+    {
+        "id": 2,
+        "name": "image_001.png",
+        "size": 65536,
+        "uploaded_at": "2026-02-12",
+        "tags": [
+            "img"
+        ],
+        "desc": "샘플 이미지"
+    },
+    {
+        "id": 3,
+        "name": "notes.txt",
+        "size": 4096,
+        "uploaded_at": "2026-02-10",
+        "tags": [
+            "text"
+        ],
+        "desc": "메모"
+    },
+    {
+        "id": 4,
+        "name": "data_sheet.xlsx",
+        "size": 524288,
+        "uploaded_at": "2026-02-09",
+        "tags": [
+            "excel",
+            "data"
+        ],
+        "desc": "데이터 시트"
+    },
+    {
+        "id": 5,
+        "name": "presentation.pptx",
+        "size": 2097152,
+        "uploaded_at": "2026-02-08",
+        "tags": [
+            "ppt"
+        ],
+        "desc": "발표 자료"
+    },
+    {
+        "id": 6,
+        "name": "config.yaml",
+        "size": 1024,
+        "uploaded_at": "2026-02-07",
+        "tags": [
+            "config"
+        ],
+        "desc": "설정 파일"
+    },
+    {
+        "id": 7,
+        "name": "report_v2.pdf",
+        "size": 1258291,
+        "uploaded_at": "2026-02-13",
+        "tags": [
+            "pdf"
+        ],
+        "desc": "2차 보고서"
+    },
+    {
+        "id": 8,
+        "name": "meeting_minutes_2026-02-11.md",
+        "size": 18340,
+        "uploaded_at": "2026-02-11",
+        "tags": [
+            "text",
+            "md"
+        ],
+        "desc": "회의록 초안"
+    },
+    {
+        "id": 9,
+        "name": "invoice_2402.pdf",
+        "size": 247911,
+        "uploaded_at": "2026-02-06",
+        "tags": [
+            "pdf",
+            "finance"
+        ],
+        "desc": "2월 인보이스"
+    },
+    {
+        "id": 10,
+        "name": "wireframe_files_page.png",
+        "size": 834201,
+        "uploaded_at": "2026-02-09",
+        "tags": [
+            "img",
+            "ui"
+        ],
+        "desc": "Files 페이지 와이어프레임"
+    },
+    {
+        "id": 11,
+        "name": "db_schema_draft_v2.json",
+        "size": 5210,
+        "uploaded_at": "2026-02-08",
+        "tags": [
+            "json",
+            "schema"
+        ],
+        "desc": "테이블 구조 초안 v2"
+    },
+    {
+        "id": 12,
+        "name": "nginx_default_conf_backup.conf",
+        "size": 3122,
+        "uploaded_at": "2026-02-13",
+        "tags": [
+            "conf",
+            "infra"
+        ],
+        "desc": "nginx 설정 백업본"
+    },
+    {
+        "id": 13,
+        "name": "docker_compose_notes.txt",
+        "size": 2890,
+        "uploaded_at": "2026-02-07",
+        "tags": [
+            "text",
+            "docker"
+        ],
+        "desc": "compose 설정 메모"
+    },
+    {
+        "id": 14,
+        "name": "sample_dataset_small.csv",
+        "size": 140992,
+        "uploaded_at": "2026-02-05",
+        "tags": [
+            "csv",
+            "data"
+        ],
+        "desc": "테스트용 샘플 데이터"
+    },
+    {
+        "id": 15,
+        "name": "profile_photo_original.jpg",
+        "size": 1903444,
+        "uploaded_at": "2026-02-04",
+        "tags": [
+            "img",
+            "jpg"
+        ],
+        "desc": "프로필 원본 이미지"
+    },
+    {
+        "id": 16,
+        "name": "release_checklist.docx",
+        "size": 362110,
+        "uploaded_at": "2026-02-10",
+        "tags": [
+            "docx",
+            "release"
+        ],
+        "desc": "릴리스 체크리스트"
+    },
+    {
+        "id": 17,
+        "name": "error_log_excerpt_502.txt",
+        "size": 9755,
+        "uploaded_at": "2026-02-13",
+        "tags": [
+            "log",
+            "debug"
+        ],
+        "desc": "502 원인 분석 로그 발췌"
+    }
+]

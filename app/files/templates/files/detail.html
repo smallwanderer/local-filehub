@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Detail · MyFileHub{% endblock %}
+{% block content %}
+<article style="margin-top: 1.2rem;">
+    <h2>파일 상세 (UI 틀)</h2>
+    <p class="muted">나중에 DB 붙일 때 id 기반으로 메타를 넣으면 됩니다.</p>
+
+    <div class="grid">
+        <div>
+            <h4 style="margin-bottom:.2rem;">메타정보</h4>
+            <ul>
+                <li><strong>파일명</strong>: (placeholder)</li>
+                <li><strong>업로드</strong>: (placeholder)</li>
+                <li><strong>용량</strong>: (placeholder)</li>
+                <li><strong>태그</strong>: (placeholder)</li>
+            </ul>
+        </div>
+        <div>
+            <h4 style="margin-bottom:.2rem;">액션</h4>
+            <p>
+                <a role="button" href="#" onclick="return false;">다운로드</a>
+                <a role="button" class="secondary" href="#" onclick="return false;">삭제</a>
+            </p>
+        </div>
+    </div>
+
+    <a href="/files/" class="secondary">← 목록으로</a>
+</article>
+{% endblock %}

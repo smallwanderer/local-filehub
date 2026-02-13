@@ -1,0 +1,42 @@
+# 1. 가상환경 및 종속성 (컨테이너 내부에서 새로 설치해야 함)
+venv/
+.venv/
+env/
+ENV/
+bin/
+lib/
+share/
+
+# 2. 파이썬 캐시 및 컴파일 파일 (불필요한 파일)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# 3. 로컬 설정 및 비밀 정보 (보안 위험)
+.env
+.venv
+*.log
+local_settings.py
+
+# 4. Git 및 개발 도구 관련
+.git/
+.gitignore
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 5. 테스트 및 분석 결과
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+
+# 6. 도커 관련 파일 자체 (빌드 컨텍스트 전달 방지)
+Dockerfile
+docker-compose.yml
+.dockerignore

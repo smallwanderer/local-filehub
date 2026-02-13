@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% block title %}MyFileHub{% endblock %}</title>
+
+    <!-- Pico.css (가벼운 미니멀 CSS) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        .container-narrow {
+            max-width: 1100px;
+        }
+
+        .muted {
+            color: var(--pico-muted-color);
+        }
+
+        .chip {
+            display: inline-block;
+            padding: .15rem .5rem;
+            border: 1px solid var(--pico-muted-border-color);
+            border-radius: 999px;
+            font-size: .8rem;
+        }
+
+        .row-actions a {
+            margin-right: .5rem;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .topbar .right {
+            display: flex;
+            gap: .5rem;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container container-narrow">
+        <header class="topbar" style="margin-top: 1.2rem;">
+            <div>
+                <strong style="font-size:1.1rem;">MyFileHub</strong>
+                <span class="muted" style="margin-left:.6rem;">파일 저장 · 검색 · 관리</span>
+            </div>
+            <div class="right">
+                {% if user.is_authenticated %}
+                <span class="muted">👤 {{ user.username }}</span>
+                <a role="button" class="secondary" href="/files/">Files</a>
+                <a role="button" class="secondary" href="/accounts/logout/">Logout</a>
+                {% else %}
+                <a role="button" href="/accounts/login/">Login</a>
+                {% endif %}
+            </div>
+        </header>
+
+        {% block content %}{% endblock %}
+
+        <footer class="muted" style="margin: 2rem 0 1.2rem;">
+            <small>MyFileHub · Django Template UI Skeleton</small>
+        </footer>
+    </main>
+</body>
+
+</html>

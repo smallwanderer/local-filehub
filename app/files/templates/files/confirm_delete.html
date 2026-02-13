@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>삭제 확인</h2>
+<p>정말 삭제할까요? <b>{{ f.original_name }}</b></p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">삭제</button>
+    <a href="{% url 'files:list' %}">취소</a>
+</form>
+{% endblock %}

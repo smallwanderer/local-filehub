@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Upload · MyFileHub{% endblock %}
+{% block content %}
+<article style="margin-top: 1.2rem;">
+    <h2>파일 업로드</h2>
+    <p class="muted">지금은 UI 틀만 잡는 단계입니다. 실제 저장 로직은 나중에 연결해도 돼요.</p>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>
+            파일 선택
+            <input type="file" name="file">
+        </label>
+
+        <label>
+            설명(선택)
+            <textarea name="description" rows="3" placeholder="예: 2026-02-13 회의 자료"></textarea>
+        </label>
+
+        <div style="display:flex; gap:.6rem;">
+            <button type="submit">업로드</button>
+            <a role="button" class="secondary" href="/files/">취소</a>
+        </div>
+    </form>
+</article>
+{% endblock %}
