@@ -1,0 +1,45 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}로그인 | FileHub{% endblock %}
+
+{% block auth_header %}
+<h1>다시 오셨군요</h1>
+<p>FileHub에 로그인하세요</p>
+{% endblock %}
+
+{% block auth_body %}
+<form method="post" novalidate>
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="{{ form.username.id_for_label }}">이메일</label>
+        {{ form.username }}
+        {% if form.username.errors %}
+        <p class="field-error">{{ form.username.errors.0 }}</p>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.password.id_for_label }}">비밀번호</label>
+        {{ form.password }}
+        {% if form.password.errors %}
+        <p class="field-error">{{ form.password.errors.0 }}</p>
+        {% endif %}
+    </div>
+
+    {% if form.non_field_errors %}
+    <p class="field-error">{{ form.non_field_errors.0 }}</p>
+    {% endif %}
+
+    <button type="submit" class="btn btn-primary auth-submit">로그인</button>
+</form>
+
+<div style="margin-top: 12px; text-align: center;">
+    <a href="{% url 'accounts:resend_verification' %}" style="font-size: 13px; color: var(--muted);">인증 메일을 받지
+        못하셨나요?</a>
+</div>
+{% endblock %}
+
+{% block auth_footer %}
+계정이 없으신가요? <a href="{% url 'accounts:signup' %}">회원가입</a>
+{% endblock %}

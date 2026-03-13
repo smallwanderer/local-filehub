@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<style>
+    /* accounts 섹션 전용 레이아웃 */
+    /* main-content를 센터 정렬 카드 형식으로 재정의 */
+    .main-content {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 64px;
+    }
+
+    .auth-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        padding: 40px 40px 36px;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .auth-header {
+        margin-bottom: 28px;
+        text-align: center;
+    }
+
+    .auth-header h1 {
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: -0.4px;
+        margin-bottom: 6px;
+    }
+
+    .auth-header p {
+        font-size: 14px;
+        color: var(--muted);
+    }
+
+    /* 폼 공통 스타일 */
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--muted);
+        margin-bottom: 6px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 9px 13px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        font-size: 14px;
+        font-family: var(--font);
+        background: var(--surface);
+        color: var(--text);
+        transition: border-color 0.15s, box-shadow 0.15s;
+        outline: none;
+    }
+
+    .form-group input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .form-group .field-error {
+        font-size: 12px;
+        color: var(--danger);
+        margin-top: 4px;
+    }
+
+    .auth-input {
+        width: 100%;
+        padding: 9px 13px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        font-size: 14px;
+        font-family: var(--font);
+        background: var(--surface);
+        color: var(--text);
+        outline: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .auth-input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .auth-submit {
+        width: 100%;
+        padding: 10px;
+        font-size: 15px;
+        font-weight: 500;
+        margin-top: 8px;
+        border-radius: var(--radius);
+    }
+
+    .auth-footer {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--muted);
+    }
+
+    .auth-footer a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .auth-footer a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="auth-card">
+    <div class="auth-header">
+        {% block auth_header %}{% endblock %}
+    </div>
+
+    {% block auth_body %}{% endblock %}
+
+    <div class="auth-footer">
+        {% block auth_footer %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,307 @@
+{% extends "files/base_files.html" %}
+
+{% block title %}파일 목록 | FileHub{% endblock %}
+
+{% block extra_head %}
+{{ block.super }}
+<style>
+  /* ── 툴바 ── */
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 180px;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px; height: 14px;
+    stroke: var(--muted); fill: none;
+    stroke-width: 2; stroke-linecap: round;
+    pointer-events: none;
+  }
+  .search-input {
+    width: 100%;
+    padding: 8px 12px 8px 34px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-family: var(--font);
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .search-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+  }
+
+  .filter-select {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-family: var(--font);
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    cursor: pointer;
+  }
+
+  .view-toggle {
+    display: flex;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .view-toggle button {
+    padding: 7px 11px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--muted);
+    transition: background 0.12s, color 0.12s;
+    display: flex; align-items: center;
+  }
+  .view-toggle button.active {
+    background: var(--accent-bg);
+    color: var(--accent);
+  }
+  .view-toggle button svg {
+    width: 15px; height: 15px;
+    stroke: currentColor; fill: none;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  /* ── 그리드 뷰 ── */
+  .file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  .file-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px 14px 14px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+    cursor: pointer;
+    position: relative;
+  }
+  .file-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+    transform: translateY(-1px);
+  }
+  .file-card .card-icon {
+    width: 38px; height: 38px;
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .file-card .card-name {
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .file-card .card-meta {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .file-card .card-star {
+    position: absolute;
+    top: 10px; right: 10px;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 0.12s;
+  }
+  .file-card:hover .card-star,
+  .file-card .card-star.starred { opacity: 1; }
+</style>
+{% endblock %}
+
+{% block files_body %}
+
+<div class="section-header">
+  <h2>모든 파일</h2>
+  <div class="section-actions">
+    <span class="meta-text">{{ files|length }}개 파일</span>
+  </div>
+</div>
+
+<!-- 툴바 -->
+<div class="toolbar">
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input class="search-input" type="search" id="fileSearch" placeholder="파일 검색...">
+  </div>
+
+  <select class="filter-select" id="typeFilter">
+    <option value="">모든 형식</option>
+    <option value="pdf">PDF</option>
+    <option value="image">이미지</option>
+    <option value="doc">문서</option>
+    <option value="other">기타</option>
+  </select>
+
+  <select class="filter-select" id="sortFilter">
+    <option value="date_desc">최신순</option>
+    <option value="date_asc">오래된순</option>
+    <option value="name_asc">이름순</option>
+    <option value="size_desc">크기순</option>
+  </select>
+
+  <div class="view-toggle">
+    <button id="gridBtn" class="active" title="그리드 뷰">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    </button>
+    <button id="listBtn" title="리스트 뷰">
+      <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+    </button>
+  </div>
+</div>
+
+{% if files %}
+
+<!-- 그리드 뷰 -->
+<div class="file-grid" id="gridView">
+  {% for file in files %}
+  <a href="{% url 'files:detail' file.pk %}" class="file-card" data-name="{{ file.name|lower }}" data-type="{{ file.file_type }}">
+    <div class="card-icon icon-{{ file.file_type|default:'other' }}">
+      {% if file.file_type == 'pdf' %}📄
+      {% elif file.file_type == 'image' %}🖼️
+      {% elif file.file_type == 'doc' %}📝
+      {% else %}📁{% endif %}
+    </div>
+    <span class="card-star {% if file.is_starred %}starred{% endif %}">⭐</span>
+    <div>
+      <p class="card-name">{{ file.name }}</p>
+      <p class="card-meta">{{ file.size_display }} · {{ file.uploaded_at|date:"m/d" }}</p>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+
+<!-- 리스트 뷰 (기본 숨김) -->
+<div id="listView" style="display:none;">
+  <div class="file-table-wrap">
+    <table class="file-table">
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>형식</th>
+          <th>크기</th>
+          <th>업로드 날짜</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for file in files %}
+        <tr data-name="{{ file.name|lower }}" data-type="{{ file.file_type }}">
+          <td>
+            <a href="{% url 'files:detail' file.pk %}" class="file-name-cell">
+              <div class="file-type-icon icon-{{ file.file_type|default:'other' }}">
+                {% if file.file_type == 'pdf' %}📄
+                {% elif file.file_type == 'image' %}🖼️
+                {% elif file.file_type == 'doc' %}📝
+                {% else %}📁{% endif %}
+              </div>
+              <span class="file-name-text">{{ file.name }}</span>
+            </a>
+          </td>
+          <td class="meta-text">{{ file.file_type|upper|default:"기타" }}</td>
+          <td class="meta-text">{{ file.size_display }}</td>
+          <td class="meta-text">{{ file.uploaded_at|date:"Y.m.d" }}</td>
+          <td>
+            <div class="file-actions">
+              <!-- 즐겨찾기 -->
+              <form method="post" action="{% url 'files:toggle_star' file.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="icon-btn star-btn {% if file.is_starred %}starred{% endif %}"
+                        title="즐겨찾기">⭐</button>
+              </form>
+              <!-- 다운로드 -->
+              <a href="{{ file.file.url }}" download class="icon-btn" title="다운로드">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </a>
+              <!-- 삭제 -->
+              <form method="post" action="{% url 'files:delete' file.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="icon-btn danger" title="삭제"
+                        onclick="return confirm('{{ file.name }}을(를) 삭제하시겠습니까?')">
+                  <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg>
+                </button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% else %}
+
+<div class="empty-state">
+  <div class="empty-state-icon">📂</div>
+  <h3>업로드된 파일이 없습니다</h3>
+  <p>파일을 업로드하면 여기에 표시됩니다</p>
+  <a href="{% url 'files:upload' %}" class="btn btn-primary">파일 업로드</a>
+</div>
+
+{% endif %}
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // 뷰 전환
+  const gridBtn = document.getElementById('gridBtn');
+  const listBtn = document.getElementById('listBtn');
+  const gridView = document.getElementById('gridView');
+  const listView = document.getElementById('listView');
+
+  gridBtn?.addEventListener('click', () => {
+    gridView.style.display = 'grid';
+    listView.style.display = 'none';
+    gridBtn.classList.add('active');
+    listBtn.classList.remove('active');
+  });
+  listBtn?.addEventListener('click', () => {
+    gridView.style.display = 'none';
+    listView.style.display = 'block';
+    listBtn.classList.add('active');
+    gridBtn.classList.remove('active');
+  });
+
+  // 검색 + 필터
+  function applyFilter() {
+    const q = document.getElementById('fileSearch').value.toLowerCase();
+    const type = document.getElementById('typeFilter').value;
+    document.querySelectorAll('[data-name]').forEach(el => {
+      const nameMatch = el.dataset.name.includes(q);
+      const typeMatch = !type || el.dataset.type === type;
+      el.style.display = (nameMatch && typeMatch) ? '' : 'none';
+    });
+  }
+  document.getElementById('fileSearch')?.addEventListener('input', applyFilter);
+  document.getElementById('typeFilter')?.addEventListener('change', applyFilter);
+</script>
+{% endblock %}

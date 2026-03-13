@@ -1,96 +1,261 @@
-{% extends "base.html" %}
-{% block title %}Files · MyFileHub{% endblock %}
+{% extends "files/base.html" %}
 
-{% block content %}
-<section style="margin-top: 1.2rem;">
-    <div style="display:flex; justify-content:space-between; align-items:flex-end; gap: 1rem;">
-        <div>
-            <h2 style="margin-bottom:.2rem;">내 파일</h2>
-            <p class="muted" style="margin:0;">파일을 검색하고, 업로드/관리할 수 있습니다.</p>
-        </div>
-        <div>
-            <a role="button" href="/files/upload/">+ 업로드</a>
-        </div>
+{% block title %}파일 목록 — FileHub{% endblock %}
+
+{% block extra_head %}
+{{ block.super }}
+<style>
+  /* ── 파일 그리드/테이블 ── */
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .search-input {
+    flex: 1;
+    padding: 8px 13px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-family: var(--font);
+    background: var(--surface);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .search-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+  }
+  .view-toggle {
+    display: flex;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .view-toggle button {
+    padding: 7px 10px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--muted);
+    transition: background 0.12s, color 0.12s;
+  }
+  .view-toggle button.active {
+    background: var(--accent-bg);
+    color: var(--accent);
+  }
+
+  /* 파일 카드 그리드 */
+  .file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+  }
+  .file-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px 14px 14px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .file-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+    transform: translateY(-1px);
+  }
+  .file-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .file-icon.pdf   { background: #FEF2F2; }
+  .file-icon.image { background: #F0FDF4; }
+  .file-icon.doc   { background: #EFF4FF; }
+  .file-icon.other { background: var(--bg); }
+
+  .file-name {
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .file-meta {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* 파일 리스트 테이블 */
+  .file-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .file-table th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    padding: 0 12px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .file-table td {
+    padding: 11px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .file-table tr:last-child td { border-bottom: none; }
+  .file-table tr:hover td { background: var(--bg); }
+  .file-table .file-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+  }
+
+  /* 빈 상태 */
+  .empty-state {
+    text-align: center;
+    padding: 64px 24px;
+    color: var(--muted);
+  }
+  .empty-state h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .empty-state p { font-size: 14px; margin-bottom: 20px; }
+</style>
+{% endblock %}
+
+{% block files_body %}
+
+<div class="section-header">
+  <h2>모든 파일</h2>
+  <div class="section-actions">
+    <span style="font-size:13px; color:var(--muted);">{{ files|length }}개 파일</span>
+  </div>
+</div>
+
+<!-- 툴바: 검색 + 뷰 전환 -->
+<div class="toolbar">
+  <input class="search-input" type="search" placeholder="파일 검색..." id="fileSearch">
+  <div class="view-toggle">
+    <button id="gridBtn" class="active" title="그리드 뷰">
+      ⊞
+    </button>
+    <button id="listBtn" title="리스트 뷰">
+      ☰
+    </button>
+  </div>
+</div>
+
+{% if files %}
+
+<!-- 그리드 뷰 -->
+<div class="file-grid" id="gridView">
+  {% for file in files %}
+  <a href="{% url 'files:detail' file.pk %}" class="file-card">
+    <div class="file-icon {{ file.file_type }}">
+      {% if file.file_type == 'pdf' %}📄
+      {% elif file.file_type == 'image' %}🖼️
+      {% elif file.file_type == 'doc' %}📝
+      {% else %}📁
+      {% endif %}
     </div>
+    <div>
+      <p class="file-name">{{ file.name }}</p>
+      <p class="file-meta">{{ file.size_display }} · {{ file.uploaded_at|date:"m/d" }}</p>
+    </div>
+  </a>
+  {% endfor %}
+</div>
 
-    <form method="get" style="margin-top: 1rem;">
-        <div style="display:flex; gap:.6rem; align-items:center;">
-            <input name="q" value="{{ q }}" placeholder="파일명/설명 검색 (예: report, 이미지, 메모)">
-            <button type="submit" class="secondary">검색</button>
-            <a href="/files/" role="button" class="secondary">초기화</a>
-        </div>
+<!-- 리스트 뷰 (기본 숨김) -->
+<div id="listView" style="display:none; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);">
+  <table class="file-table">
+    <thead>
+      <tr>
+        <th>이름</th>
+        <th>크기</th>
+        <th>날짜</th>
+        <th>AI 분석</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for file in files %}
+      <tr>
+        <td>
+          <a href="{% url 'files:detail' file.pk %}" class="file-link">
+            <span>{% if file.file_type == 'pdf' %}📄{% elif file.file_type == 'image' %}🖼️{% else %}📁{% endif %}</span>
+            {{ file.name }}
+          </a>
+        </td>
+        <td style="color:var(--muted);">{{ file.size_display }}</td>
+        <td style="color:var(--muted);">{{ file.uploaded_at|date:"Y.m.d" }}</td>
+        <td>
+          {% if file.ai_analyzed %}
+            <span style="font-size:12px; color:var(--success);">완료</span>
+          {% else %}
+            <span style="font-size:12px; color:var(--muted);">—</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
-        <!-- 향후 확장용(필터/정렬 UI 틀) -->
-        <details style="margin-top:.6rem;">
-            <summary class="muted">필터/정렬 (UI 틀)</summary>
-            <div style="display:flex; gap:1rem; margin-top:.6rem; flex-wrap:wrap;">
-                <label>
-                    타입
-                    <select disabled>
-                        <option>전체</option>
-                        <option>문서</option>
-                        <option>이미지</option>
-                        <option>압축</option>
-                    </select>
-                </label>
-                <label>
-                    정렬
-                    <select disabled>
-                        <option>최신순</option>
-                        <option>이름순</option>
-                        <option>용량순</option>
-                    </select>
-                </label>
-                <label>
-                    태그
-                    <input disabled placeholder="예: pdf,img">
-                </label>
-            </div>
-            <small class="muted">지금은 UI만 있고, 동작은 나중에 붙입니다.</small>
-        </details>
-    </form>
+{% else %}
+<div class="empty-state">
+  <h3>아직 파일이 없습니다</h3>
+  <p>파일을 업로드하면 AI가 자동으로 분석해드려요</p>
+  <a href="{% url 'files:upload' %}" class="btn btn-primary">첫 파일 업로드</a>
+</div>
+{% endif %}
 
-    <article style="margin-top: 1rem;">
-        {% if files %}
-        <figure>
-            <table role="grid">
-                <thead>
-                    <tr>
-                        <th>파일</th>
-                        <th>설명</th>
-                        <th style="white-space:nowrap;">용량</th>
-                        <th style="white-space:nowrap;">업로드</th>
-                        <th style="white-space:nowrap;">액션</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for f in files %}
-                    <tr>
-                        <td>
-                            <strong>{{ f.name }}</strong><br>
-                            <small class="muted">id={{ f.id }}</small>
-                            {% if f.tags %}
-                            <div style="margin-top:.3rem;">
-                                {% for t in f.tags %}<span class="chip">{{ t }}</span>{% endfor %}
-                            </div>
-                            {% endif %}
-                        </td>
-                        <td>{{ f.desc }}</td>
-                        <td>{{ f.size }}</td>
-                        <td>{{ f.uploaded_at }}</td>
-                        <td class="row-actions">
-                            <a href="/files/{{ f.id }}/">보기</a>
-                            <a href="#" onclick="return false;">다운로드</a>
-                            <a href="#" onclick="return false;" class="muted">삭제</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </figure>
-        {% else %}
-        <p class="muted">검색 결과가 없습니다.</p>
-        {% endif %}
-    </article>
-</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  const gridBtn = document.getElementById('gridBtn');
+  const listBtn = document.getElementById('listBtn');
+  const gridView = document.getElementById('gridView');
+  const listView = document.getElementById('listView');
+
+  gridBtn?.addEventListener('click', () => {
+    gridView.style.display = 'grid';
+    listView.style.display = 'none';
+    gridBtn.classList.add('active');
+    listBtn.classList.remove('active');
+  });
+  listBtn?.addEventListener('click', () => {
+    gridView.style.display = 'none';
+    listView.style.display = 'block';
+    listBtn.classList.add('active');
+    gridBtn.classList.remove('active');
+  });
+
+  // 클라이언트 검색 (간단)
+  document.getElementById('fileSearch')?.addEventListener('input', function() {
+    const q = this.value.toLowerCase();
+    document.querySelectorAll('.file-card, .file-table tbody tr').forEach(el => {
+      el.style.display = el.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
+</script>
 {% endblock %}

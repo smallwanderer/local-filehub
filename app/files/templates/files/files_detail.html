@@ -1,0 +1,328 @@
+{% extends "files/base.html" %}
+
+{% block title %}{{ file.name }} — FileHub{% endblock %}
+
+{% block extra_head %}
+{{ block.super }}
+<style>
+  /* ── 파일 상세 페이지 ── */
+  .detail-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .detail-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: var(--accent-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+  .detail-title h2 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+  .detail-title p {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .detail-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+  }
+
+  /* 탭 */
+  .detail-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .detail-tabs button {
+    padding: 10px 18px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--font);
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.12s, border-color 0.12s;
+    margin-bottom: -1px;
+  }
+  .detail-tabs button.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* AI 분석 카드 */
+  .ai-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .ai-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--accent-bg);
+  }
+  .ai-panel-header h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .ai-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    background: var(--accent);
+    color: white;
+    border-radius: 20px;
+  }
+  .ai-panel-body {
+    padding: 20px;
+  }
+  .ai-summary {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  /* AI 태그 */
+  .ai-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .ai-tag {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--muted);
+  }
+
+  /* AI 채팅 */
+  .ai-chat {
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+  .ai-chat h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  .chat-msg {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .chat-msg.user {
+    align-self: flex-end;
+    background: var(--accent);
+    color: white;
+    border-bottom-right-radius: 4px;
+  }
+  .chat-msg.ai {
+    align-self: flex-start;
+    background: var(--bg);
+    color: var(--text);
+    border-bottom-left-radius: 4px;
+  }
+  .chat-input-row {
+    display: flex;
+    gap: 8px;
+  }
+  .chat-input-row input {
+    flex: 1;
+    padding: 9px 13px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-family: var(--font);
+    outline: none;
+    background: var(--surface);
+  }
+  .chat-input-row input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+  }
+
+  /* 파일 정보 테이블 */
+  .info-table {
+    width: 100%;
+    font-size: 14px;
+    border-collapse: collapse;
+  }
+  .info-table tr td {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-table tr:last-child td { border-bottom: none; }
+  .info-table td:first-child {
+    color: var(--muted);
+    font-size: 13px;
+    width: 120px;
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+</style>
+{% endblock %}
+
+{% block files_body %}
+
+<!-- 헤더 -->
+<div class="detail-header">
+  <div class="detail-icon">
+    {% if file.file_type == 'pdf' %}📄{% elif file.file_type == 'image' %}🖼️{% else %}📁{% endif %}
+  </div>
+  <div class="detail-title">
+    <h2>{{ file.name }}</h2>
+    <p>{{ file.size_display }} · {{ file.uploaded_at|date:"Y년 m월 d일" }} 업로드</p>
+  </div>
+  <div class="detail-actions">
+    <a href="{{ file.file.url }}" download class="btn btn-ghost">다운로드</a>
+    <form method="post" action="{% url 'files:delete' file.pk %}" style="display:inline;">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-ghost"
+              style="color:var(--danger);"
+              onclick="return confirm('삭제하시겠습니까?')">삭제</button>
+    </form>
+  </div>
+</div>
+
+<!-- 탭 -->
+<div class="detail-tabs">
+  <button class="active" data-tab="ai">AI 분석</button>
+  <button data-tab="info">파일 정보</button>
+  <button data-tab="preview">미리보기</button>
+</div>
+
+<!-- AI 분석 탭 -->
+<div class="tab-panel active" id="tab-ai">
+  <div class="ai-panel">
+    <div class="ai-panel-header">
+      <span style="font-size:18px;">✨</span>
+      <h3>AI 분석 결과</h3>
+      {% if file.ai_analyzed %}
+        <span class="ai-badge">완료</span>
+      {% else %}
+        <span class="ai-badge" style="background:var(--muted);">분석 중</span>
+      {% endif %}
+    </div>
+    <div class="ai-panel-body">
+
+      {% if file.ai_summary %}
+      <p class="ai-summary">{{ file.ai_summary }}</p>
+
+      {% if file.ai_tags %}
+      <div class="ai-tags">
+        {% for tag in file.ai_tags %}
+        <span class="ai-tag"># {{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% else %}
+      <p style="font-size:14px; color:var(--muted);">아직 분석이 완료되지 않았습니다.</p>
+      <form method="post" action="{% url 'files:analyze' file.pk %}" style="margin-top:12px;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">AI 분석 시작</button>
+      </form>
+      {% endif %}
+
+      <!-- AI 파일 Q&A -->
+      <div class="ai-chat">
+        <h4>이 파일에 대해 질문하기</h4>
+        <div class="chat-messages" id="chatMessages">
+          {% for msg in chat_history %}
+          <div class="chat-msg {{ msg.role }}">{{ msg.content }}</div>
+          {% endfor %}
+        </div>
+        <form method="post" action="{% url 'files:chat' file.pk %}" class="chat-input-row">
+          {% csrf_token %}
+          <input type="text" name="question" placeholder="이 파일에 대해 무엇이든 물어보세요..." autocomplete="off">
+          <button type="submit" class="btn btn-primary">전송</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 파일 정보 탭 -->
+<div class="tab-panel" id="tab-info">
+  <div class="card" style="padding:20px;">
+    <table class="info-table">
+      <tr><td>파일명</td><td>{{ file.name }}</td></tr>
+      <tr><td>크기</td><td>{{ file.size_display }}</td></tr>
+      <tr><td>형식</td><td>{{ file.content_type }}</td></tr>
+      <tr><td>업로드</td><td>{{ file.uploaded_at|date:"Y.m.d H:i" }}</td></tr>
+      <tr><td>업로드한 사람</td><td>{{ file.owner.username }}</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 미리보기 탭 -->
+<div class="tab-panel" id="tab-preview">
+  <div class="card" style="padding:20px; text-align:center; min-height:300px; display:flex; align-items:center; justify-content:center;">
+    {% if file.file_type == 'image' %}
+      <img src="{{ file.file.url }}" alt="{{ file.name }}"
+           style="max-width:100%; max-height:500px; border-radius:8px;">
+    {% elif file.file_type == 'pdf' %}
+      <iframe src="{{ file.file.url }}" width="100%" height="500px"
+              style="border:none; border-radius:8px;"></iframe>
+    {% else %}
+      <p style="color:var(--muted); font-size:14px;">이 파일 형식은 미리보기를 지원하지 않습니다</p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // 탭 전환
+  document.querySelectorAll('.detail-tabs button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.detail-tabs button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // 채팅 스크롤
+  const chatEl = document.getElementById('chatMessages');
+  if (chatEl) chatEl.scrollTop = chatEl.scrollHeight;
+</script>
+{% endblock %}

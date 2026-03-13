@@ -1,0 +1,28 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}인증 메일 재발송 | FileHub{% endblock %}
+
+{% block auth_header %}
+<h1>인증 메일 재발송</h1>
+<p>가입하신 이메일 주소를 입력해주세요</p>
+{% endblock %}
+
+{% block auth_body %}
+<form method="post" novalidate>
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="{{ form.email.id_for_label }}">이메일</label>
+        {{ form.email }}
+        {% if form.email.errors %}
+        <p class="field-error">{{ form.email.errors.0 }}</p>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary auth-submit">인증 메일 보내기</button>
+</form>
+{% endblock %}
+
+{% block auth_footer %}
+<a href="{% url 'accounts:login' %}">로그인으로 돌아가기</a>
+{% endblock %}

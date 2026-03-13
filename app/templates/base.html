@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FileHub{% endblock %}</title>
+
+    <!-- Google Fonts: Pretendard 계열 대체 (Noto Sans KR + DM Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --font: 'DM Sans', 'Noto Sans KR', sans-serif;
+            --bg: #F7F7F5;
+            --surface: #FFFFFF;
+            --border: #E4E4E0;
+            --text: #1A1A18;
+            --muted: #6B6B66;
+            --accent: #2563EB;
+            --accent-bg: #EFF4FF;
+            --danger: #DC2626;
+            --success: #16A34A;
+            --warn: #D97706;
+            --radius: 10px;
+            --radius-lg: 14px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            font-size: 15px;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── 네비게이션 ── */
+        .navbar {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .navbar-brand {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .navbar-brand .brand-icon {
+            width: 26px;
+            height: 26px;
+            background: var(--accent);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navbar-brand .brand-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: white;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
+        }
+
+        .navbar-nav a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--muted);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 7px;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .navbar-nav a:hover,
+        .navbar-nav a.active {
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 500;
+            font-family: var(--font);
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: background 0.15s, color 0.15s, border-color 0.15s;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--muted);
+            border-color: var(--border);
+        }
+
+        .btn-ghost:hover {
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        /* ── 메시지 알림 ── */
+        .messages-container {
+            max-width: 1200px;
+            margin: 16px auto 0;
+            padding: 0 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .message {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 16px;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid;
+        }
+
+        .message.success {
+            background: #F0FDF4;
+            color: var(--success);
+            border-color: #BBF7D0;
+        }
+
+        .message.error {
+            background: #FEF2F2;
+            color: var(--danger);
+            border-color: #FECACA;
+        }
+
+        .message.warning {
+            background: #FFFBEB;
+            color: var(--warn);
+            border-color: #FDE68A;
+        }
+
+        .message.info {
+            background: var(--accent-bg);
+            color: var(--accent);
+            border-color: #BFDBFE;
+        }
+
+        /* 태그 없으면 info 스타일 기본 적용 */
+        .message:not([class*="success"]):not([class*="error"]):not([class*="warning"]) {
+            background: var(--accent-bg);
+            color: var(--accent);
+            border-color: #BFDBFE;
+        }
+
+        /* ── 메인 컨텐츠 ── */
+        .main-content {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 32px 24px 64px;
+        }
+
+        /* ── 푸터 ── */
+        .footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 20px 24px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-inner p {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        /* ── 공통 카드 ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ── 블록 정의 (자식이 채움) ── */
+    </style>
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- 네비게이션 -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="/" class="navbar-brand">
+                <span class="brand-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+                        <polyline points="13 2 13 9 20 9" style="fill:none;stroke:white;stroke-width:2" />
+                    </svg>
+                </span>
+                FileHub
+            </a>
+
+            <nav class="navbar-nav">
+                {% block nav_items %}
+                <a href="{% url 'files:list' %}"
+                    class="{% if request.resolver_match.app_name == 'files' %}active{% endif %}">파일</a>
+                {% endblock %}
+            </nav>
+
+            <div class="navbar-actions">
+                {% if user.is_authenticated %}
+                <span style="font-size:14px; color:var(--muted);">{{ user.username }}</span>
+                <form action="{% url 'accounts:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-ghost">로그아웃</button>
+                </form>
+                {% else %}
+                <a href="{% url 'accounts:login' %}" class="btn btn-ghost">로그인</a>
+                <a href="{% url 'accounts:signup' %}" class="btn btn-primary">시작하기</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- 메시지 알림 -->
+    {% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- 메인 컨텐츠 -->
+    <main class="main-content">
+        {% block body %}{% endblock %}
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>© 2025 FileHub</p>
+            <p>AI 파일 관리 서비스</p>
+        </div>
+    </footer>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+
+</html>

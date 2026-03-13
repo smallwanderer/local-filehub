@@ -1,0 +1,303 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<style>
+  /* ── 파일 섹션 2컬럼 레이아웃 ── */
+  .files-layout {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  /* ── 사이드바 ── */
+  .files-sidebar {
+    position: sticky;
+    top: 76px;
+  }
+
+  .sidebar-upload-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 9px 14px;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .sidebar-section {
+    margin-bottom: 20px;
+  }
+  .sidebar-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0 10px;
+    margin-bottom: 4px;
+  }
+
+  .sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    transition: background 0.12s, color 0.12s;
+  }
+  .sidebar-nav a:hover {
+    background: var(--border);
+    color: var(--text);
+  }
+  .sidebar-nav a.active {
+    background: var(--accent-bg);
+    color: var(--accent);
+  }
+  .sidebar-nav a svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ── 저장 공간 ── */
+  .storage-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    margin-top: 8px;
+  }
+  .storage-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .storage-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .storage-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+  .storage-numbers {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* ── 메인 영역 ── */
+  .files-main { min-width: 0; }
+
+  /* ── 섹션 헤더 ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .section-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+  }
+  .section-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ── 공통 빈 상태 ── */
+  .empty-state {
+    text-align: center;
+    padding: 72px 24px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+  .empty-state-icon { font-size: 36px; margin-bottom: 12px; }
+  .empty-state h3 {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .empty-state p { font-size: 14px; margin-bottom: 20px; }
+
+  /* ── 공통 파일 테이블 ── */
+  .file-table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .file-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .file-table th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .file-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .file-table tbody tr:last-child td { border-bottom: none; }
+  .file-table tbody tr:hover td { background: var(--bg); }
+
+  .file-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .file-name-cell:hover .file-name-text { color: var(--accent); }
+  .file-name-text { font-weight: 500; }
+
+  .file-type-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .icon-pdf   { background: #FEF2F2; }
+  .icon-image { background: #F0FDF4; }
+  .icon-doc   { background: #EFF4FF; }
+  .icon-other { background: var(--bg); }
+
+  .file-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.12s;
+  }
+  .file-table tbody tr:hover .file-actions { opacity: 1; }
+
+  .icon-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    transition: background 0.12s, color 0.12s;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .icon-btn:hover { background: var(--border); color: var(--text); }
+  .icon-btn.danger:hover { background: #FEF2F2; color: var(--danger); }
+  .icon-btn svg {
+    width: 14px; height: 14px;
+    stroke: currentColor; fill: none;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .star-btn { font-size: 15px; }
+  .star-btn.starred { color: #F59E0B; }
+
+  .meta-text { font-size: 13px; color: var(--muted); }
+
+  /* ── 반응형 ── */
+  @media (max-width: 768px) {
+    .files-layout { grid-template-columns: 1fr; }
+    .files-sidebar { position: static; }
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="files-layout">
+
+  <!-- ── 사이드바 ── -->
+  <aside class="files-sidebar">
+
+    <a href="{% url 'files:upload' %}" class="btn btn-primary sidebar-upload-btn">
+      + 파일 업로드
+    </a>
+
+    <div class="sidebar-section">
+      <p class="sidebar-section-title">탐색</p>
+      <nav class="sidebar-nav">
+
+        <a href="{% url 'files:list' %}"
+           class="{% if request.resolver_match.url_name == 'list' %}active{% endif %}">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          모든 파일
+        </a>
+
+        <a href="{% url 'files:recent' %}"
+           class="{% if request.resolver_match.url_name == 'recent' %}active{% endif %}">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          최근 파일
+        </a>
+
+        <a href="{% url 'files:starred' %}"
+           class="{% if request.resolver_match.url_name == 'starred' %}active{% endif %}">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          즐겨찾기
+        </a>
+
+        <a href="{% url 'files:trash' %}"
+           class="{% if request.resolver_match.url_name == 'trash' %}active{% endif %}">
+          <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          휴지통
+        </a>
+
+      </nav>
+    </div>
+
+    <!-- 저장 공간 -->
+    <div class="sidebar-section">
+      <p class="sidebar-section-title">저장 공간</p>
+      <div class="storage-box">
+        <p class="storage-label">사용 중인 공간</p>
+        <div class="storage-bar">
+          <div class="storage-bar-fill" style="width: {{ storage_percent|default:'0' }}%"></div>
+        </div>
+        <p class="storage-numbers">
+          {{ used_storage|default:'0 MB' }} / {{ total_storage|default:'5 GB' }}
+        </p>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ── 메인 영역 ── -->
+  <main class="files-main">
+    {% block files_body %}{% endblock %}
+  </main>
+
+</div>
+{% endblock %}

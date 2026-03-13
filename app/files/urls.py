@@ -12,4 +12,6 @@ urlpatterns = [
     path("<int:pk>/", views.file_detail, name="detail"),
     path("<int:pk>/download/", views.file_download, name="download"),
     path("<int:pk>/confirm_delete/", views.file_delete, name="delete"),
+    path("recent/", views.recent_files, name="recent"),
+    path("starred/", views.starred_files, name="starred"),
 ]

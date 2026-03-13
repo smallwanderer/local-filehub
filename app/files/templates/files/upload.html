@@ -1,27 +1,312 @@
-{% extends "base.html" %}
-{% block title %}Upload · MyFileHub{% endblock %}
-{% block content %}
-<article style="margin-top: 1.2rem;">
-    <h2>파일 업로드</h2>
-    <p class="muted">지금은 UI 틀만 잡는 단계입니다. 실제 저장 로직은 나중에 연결해도 돼요.</p>
+{% extends "files/base_files.html" %}
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+{% block title %}파일 업로드 | FileHub{% endblock %}
 
-        <label>
-            파일 선택
-            <input type="file" name="file">
-        </label>
+{% block extra_head %}
+{{ block.super }}
+<style>
+  /* ── 업로드 존 ── */
+  .upload-zone {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    padding: 56px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .upload-zone:hover,
+  .upload-zone.dragover {
+    border-color: var(--accent);
+    background: var(--accent-bg);
+  }
+  .upload-zone-icon { font-size: 40px; margin-bottom: 14px; }
+  .upload-zone h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .upload-zone p {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .upload-zone input[type="file"] { display: none; }
 
-        <label>
-            설명(선택)
-            <textarea name="description" rows="3" placeholder="예: 2026-02-13 회의 자료"></textarea>
-        </label>
+  /* ── 업로드 대기 목록 ── */
+  .upload-queue {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .upload-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .upload-item-icon { font-size: 22px; flex-shrink: 0; }
+  .upload-item-info { flex: 1; min-width: 0; }
+  .upload-item-name {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+  }
+  .upload-item-meta { font-size: 12px; color: var(--muted); }
 
-        <div style="display:flex; gap:.6rem;">
-            <button type="submit">업로드</button>
-            <a role="button" class="secondary" href="/files/">취소</a>
+  /* 진행률 바 */
+  .progress-bar {
+    width: 100%;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-top: 6px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.3s;
+  }
+
+  /* 상태 배지 */
+  .status-badge {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .status-waiting  { background: var(--bg); color: var(--muted); }
+  .status-uploading { background: var(--accent-bg); color: var(--accent); }
+  .status-done     { background: #F0FDF4; color: var(--success); }
+  .status-error    { background: #FEF2F2; color: var(--danger); }
+  .status-duplicate { background: #FFFBEB; color: var(--warn); }
+
+  /* 제거 버튼 */
+  .remove-btn {
+    width: 26px; height: 26px;
+    border: none; background: transparent;
+    border-radius: 6px; cursor: pointer;
+    color: var(--muted);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.12s, color 0.12s;
+    flex-shrink: 0;
+  }
+  .remove-btn:hover { background: #FEF2F2; color: var(--danger); }
+  .remove-btn svg {
+    width: 13px; height: 13px;
+    stroke: currentColor; fill: none;
+    stroke-width: 2; stroke-linecap: round;
+  }
+
+  /* ── 업로드 액션 ── */
+  .upload-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  /* ── 제한 안내 ── */
+  .upload-limits {
+    margin-top: 16px;
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .upload-limits span::before { content: '· '; }
+</style>
+{% endblock %}
+
+{% block files_body %}
+
+<div class="section-header">
+  <h2>파일 업로드</h2>
+</div>
+
+<!-- 드래그 앤 드롭 존 -->
+<div class="upload-zone" id="uploadZone">
+  <div class="upload-zone-icon">☁️</div>
+  <h3>파일을 여기에 끌어다 놓으세요</h3>
+  <p>또는 버튼을 클릭하여 파일을 선택하세요</p>
+  <label class="btn btn-primary" style="cursor:pointer;">
+    파일 선택
+    <input type="file" id="fileInput" multiple>
+  </label>
+</div>
+
+<!-- 제한 안내 -->
+<div class="upload-limits">
+  <span>최대 파일 크기: 100MB</span>
+  <span>지원 형식: PDF, 이미지, 문서, 기타</span>
+  <span>복수 파일 동시 업로드 가능</span>
+</div>
+
+<!-- 업로드 대기 목록 -->
+<div class="upload-queue" id="uploadQueue" style="display:none;"></div>
+
+<!-- 액션 버튼 -->
+<div class="upload-actions" id="uploadActions" style="display:none;">
+  <button class="btn btn-ghost" id="clearBtn">모두 지우기</button>
+  <button class="btn btn-primary" id="startUploadBtn">업로드 시작</button>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  const zone    = document.getElementById('uploadZone');
+  const input   = document.getElementById('fileInput');
+  const queue   = document.getElementById('uploadQueue');
+  const actions = document.getElementById('uploadActions');
+  const clearBtn = document.getElementById('clearBtn');
+  const startBtn = document.getElementById('startUploadBtn');
+
+  let files = [];
+
+  function getIcon(name) {
+    const ext = name.split('.').pop().toLowerCase();
+    if (ext === 'pdf') return '📄';
+    if (['jpg','jpeg','png','gif','webp','svg'].includes(ext)) return '🖼️';
+    if (['doc','docx','txt','md','hwp'].includes(ext)) return '📝';
+    return '📁';
+  }
+
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  function renderQueue() {
+    queue.innerHTML = '';
+    if (files.length === 0) {
+      queue.style.display = 'none';
+      actions.style.display = 'none';
+      return;
+    }
+    queue.style.display = 'flex';
+    actions.style.display = 'flex';
+
+    files.forEach((f, i) => {
+      const item = document.createElement('div');
+      item.className = 'upload-item';
+      item.innerHTML = `
+        <span class="upload-item-icon">${getIcon(f.name)}</span>
+        <div class="upload-item-info">
+          <div class="upload-item-name">${f.name}</div>
+          <div class="upload-item-meta">${formatSize(f.size)}</div>
+          <div class="progress-bar"><div class="progress-fill" id="progress-${i}"></div></div>
         </div>
-    </form>
-</article>
+        <span class="status-badge status-waiting" id="status-${i}">대기 중</span>
+        <button class="remove-btn" data-index="${i}" title="제거">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      `;
+      queue.appendChild(item);
+    });
+
+    // 제거 버튼
+    queue.querySelectorAll('.remove-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        files.splice(parseInt(btn.dataset.index), 1);
+        renderQueue();
+      });
+    });
+  }
+
+  function addFiles(newFiles) {
+    const MAX = 100 * 1024 * 1024; // 100MB
+    Array.from(newFiles).forEach(f => {
+      if (f.size > MAX) {
+        alert(`${f.name}: 파일 크기가 100MB를 초과합니다.`);
+        return;
+      }
+      if (!files.find(existing => existing.name === f.name && existing.size === f.size)) {
+        files.push(f);
+      }
+    });
+    renderQueue();
+  }
+
+  // 파일 선택
+  input.addEventListener('change', () => addFiles(input.files));
+
+  // 드래그 앤 드롭
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('dragover');
+    addFiles(e.dataTransfer.files);
+  });
+
+  // 모두 지우기
+  clearBtn.addEventListener('click', () => { files = []; renderQueue(); });
+
+  // 업로드 시작
+  startBtn.addEventListener('click', async () => {
+    startBtn.disabled = true;
+    startBtn.textContent = '업로드 중...';
+
+    for (let i = 0; i < files.length; i++) {
+      const statusEl = document.getElementById(`status-${i}`);
+      const progressEl = document.getElementById(`progress-${i}`);
+      statusEl.className = 'status-badge status-uploading';
+      statusEl.textContent = '업로드 중';
+
+      const formData = new FormData();
+      formData.append('file', files[i]);
+      formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+      try {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '{% url "files:upload" %}');
+        xhr.upload.addEventListener('progress', e => {
+          if (e.lengthComputable) {
+            progressEl.style.width = Math.round(e.loaded / e.total * 100) + '%';
+          }
+        });
+        await new Promise((resolve, reject) => {
+          xhr.onload = () => {
+            if (xhr.status === 200 || xhr.status === 201 || xhr.status === 302) {
+              statusEl.className = 'status-badge status-done';
+              statusEl.textContent = '완료';
+              progressEl.style.width = '100%';
+              resolve();
+            } else {
+              reject();
+            }
+          };
+          xhr.onerror = reject;
+          xhr.send(formData);
+        });
+      } catch {
+        statusEl.className = 'status-badge status-error';
+        statusEl.textContent = '실패';
+      }
+    }
+
+    startBtn.textContent = '완료';
+    setTimeout(() => {
+      window.location.href = '{% url "files:list" %}';
+    }, 1000);
+  });
+</script>
 {% endblock %}

@@ -1,0 +1,92 @@
+{% extends "files/base_files.html" %}
+
+{% block title %}휴지통 | FileHub{% endblock %}
+
+{% block files_body %}
+
+<div class="section-header">
+  <h2>휴지통</h2>
+  <div class="section-actions">
+    {% if files %}
+    <form method="post" action="{% url 'files:empty_trash' %}"
+          onsubmit="return confirm('휴지통을 완전히 비우시겠습니까? 복구할 수 없습니다.')">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-ghost" style="color:var(--danger);">
+        휴지통 비우기
+      </button>
+    </form>
+    {% endif %}
+  </div>
+</div>
+
+<!-- 보관 정책 안내 -->
+<div style="background:var(--bg); border-radius:var(--radius); padding:11px 16px;
+            font-size:13px; color:var(--muted); margin-bottom:16px; display:flex; align-items:center; gap:8px;">
+  <span>⏱️</span>
+  삭제된 파일은 30일 후 자동으로 완전 삭제됩니다.
+</div>
+
+{% if files %}
+<div class="file-table-wrap">
+  <table class="file-table">
+    <thead>
+      <tr>
+        <th>이름</th>
+        <th>크기</th>
+        <th>삭제 날짜</th>
+        <th>자동 삭제까지</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for file in files %}
+      <tr>
+        <td>
+          <div class="file-name-cell" style="opacity:0.6;">
+            <div class="file-type-icon icon-{{ file.file_type|default:'other' }}">
+              {% if file.file_type == 'pdf' %}📄
+              {% elif file.file_type == 'image' %}🖼️
+              {% elif file.file_type == 'doc' %}📝
+              {% else %}📁{% endif %}
+            </div>
+            <span class="file-name-text">{{ file.name }}</span>
+          </div>
+        </td>
+        <td class="meta-text">{{ file.size_display }}</td>
+        <td class="meta-text">{{ file.deleted_at|date:"Y.m.d" }}</td>
+        <td class="meta-text">{{ file.days_until_deletion }}일 후</td>
+        <td>
+          <div class="file-actions">
+            <!-- 복구 -->
+            <form method="post" action="{% url 'files:restore' file.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="icon-btn" title="복구" style="font-size:13px;">↩</button>
+            </form>
+            <!-- 완전 삭제 -->
+            <form method="post" action="{% url 'files:permanent_delete' file.pk %}"
+                  onsubmit="return confirm('영구 삭제하면 복구할 수 없습니다.')">
+              {% csrf_token %}
+              <button type="submit" class="icon-btn danger" title="영구 삭제">
+                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6l-1 14H6L5 6"/>
+                  <path d="M9 6V4h6v2"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="empty-state">
+  <div class="empty-state-icon">🗑️</div>
+  <h3>휴지통이 비어 있습니다</h3>
+  <p>삭제된 파일이 없습니다</p>
+</div>
+{% endif %}
+
+{% endblock %}
