@@ -3,11 +3,12 @@ from django.core.files.base import File
 from django.contrib.auth.models import AbstractBaseUser
 
 import dataclasses
+import os
 
 from ..models import UserFile
 from .utils import *
 
-ALLOWED_EXTENSIONS = {".pdf", ".txt", ".png", ".jpg", ".jpeg", ".docx"}
+ALLOWED_EXTENSIONS = {".pdf", ".txt", ".png", ".jpg", ".jpeg", ".docx", ".html"}
 MAX_UPLOAD_SIZE = 2 * 1024 * 1024 * 1024  # 2GB
 
 @dataclasses.dataclass
@@ -15,9 +16,63 @@ class UploadValidationResult:
     ok: bool
     warnings: list[str] = dataclasses.field(default_factory=list)
     errors: list[str] = dataclasses.field(default_factory=list)
+    duplicate: bool = False
 
-def validate_upload(owner: AbstractBaseUser, uploadde_file) -> UploadValidationResult:
-    pass
+def validate_upload(owner: AbstractBaseUser, uploaded_file: File) -> UploadValidationResult:
+    """
+    파일 업로드 전 유효성을 검사합니다.
+
+    Args:
+        owner (AbstractBaseUser): 파일을 업로드하는 사용자 객체
+        uploaded_file (File): 업로드된 파일 객체 (예: UploadedFile)
+    
+    기능:
+        - 파일 크기 검사
+        - 파일 형식/MIME 타입 검사
+        - 파일 중복 검사
+
+    Returns:
+        UploadValidationResult: 유효성 검사 결과
+    """
+    warnings = []
+    errors = []
+
+    if uploaded_file is None:
+        return UploadValidationResult(
+            ok=False,
+            errors=["파일이 없습니다."]
+        )
+    
+    if uploaded_file.size > MAX_UPLOAD_SIZE:
+        return UploadValidationResult(
+            ok=False,
+            errors=["파일 크기가 제한을 초과했습니다."]
+        )
+
+    ext = os.path.splitext(uploaded_file.name)[1].lower()
+    if ext not in ALLOWED_EXTENSIONS:
+        return UploadValidationResult(
+            ok=False,
+            errors=["지원하지 않는 파일 형식입니다."]
+        )
+
+    content_type = getattr(uploaded_file, "content_type", None)
+    if not content_type:
+        warnings.append("파일의 MIME을 확인할 수 없습니다.")
+    
+    sha256 = calculate_sha256(uploaded_file)
+    duplicate = UserFile.objects.filter(owner=owner, sha256=sha256).exists()
+    if duplicate:
+        warnings.append("이미 존재하는 파일입니다.")
+    
+    ok = len(errors) == 0
+
+    return UploadValidationResult(
+        ok=ok,
+        warnings=warnings,
+        errors=errors,
+        duplicate=duplicate,
+    )
 
 
 def save_file(owner: AbstractBaseUser, file: File, description: str) -> UserFile:
@@ -32,8 +87,15 @@ def save_file(owner: AbstractBaseUser, file: File, description: str) -> UserFile
     Returns:
         UserFile: 데이터베이스에 생성된 UserFile 모델 인스턴스
     """
+
     sha256 = calculate_sha256(file)
-    file.seek(0) # 파일 포인터를 파일의 시작으로 이동
+    file.seek(0)
+
+    # 중복 파일 저장 방지
+    # existing = UserFile.objects.filter(owner=owner, sha256=sha256).first()
+    # if existing:
+    #     return existing
+    
     path = save_file_path(file)
 
     obj = UserFile.objects.create(

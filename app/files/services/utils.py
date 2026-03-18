@@ -5,8 +5,13 @@ import os
 def calculate_sha256(file):
     sha256 = hashlib.sha256()
 
+    file.seek(0)
+
     for chunk in file.chunks():
         sha256.update(chunk)
+
+    file.seek(0)
+    
     return sha256.hexdigest()
 
 def generate_unique_name(name):
