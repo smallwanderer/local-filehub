@@ -48,6 +48,7 @@ Windows 환경에서는 경우에 따라 **WSL2** 설정이 필요할 수 있습
 ```bash
 curl -fL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
+```
 
 ### 2. 프로젝트 클론
 
