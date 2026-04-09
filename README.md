@@ -4,6 +4,7 @@
 라즈베리파이, NAS, 개인 서버 같은 홈서버 환경에서도 **Docker Compose로 빠르게 배포**할 수 있도록 구현하는 것을 목표로 합니다.
 
 ---
+<img width="2354" height="1444" alt="image" src="https://github.com/user-attachments/assets/e6f60213-e060-4d70-99d6-e2b300dff962" />
 
 ## 주요 기능
 
