@@ -277,7 +277,7 @@
 
       try {
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', '{% url "files:upload" %}');
+        xhr.open('POST', '{% url "files:api_upload" %}');
         xhr.upload.addEventListener('progress', e => {
           if (e.lengthComputable) {
             progressEl.style.width = Math.round(e.loaded / e.total * 100) + '%';
@@ -305,7 +305,7 @@
 
     startBtn.textContent = '완료';
     setTimeout(() => {
-      window.location.href = '{% url "files:list" %}';
+      window.location.href = '{% url "files:index" %}';
     }, 1000);
   });
 </script>

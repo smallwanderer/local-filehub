@@ -45,6 +45,9 @@ INSTALLED_APPS = [
 
     'files.apps.FilesConfig',
     'accounts.apps.AccountsConfig',
+    'document_ai.apps.DocumentAiConfig',
+    'rest_framework',
+    'drf_yasg',
 ]
 
 LOGIN_URL = '/accounts/login/'
@@ -87,6 +90,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
+
+# Celery
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", "redis://redis:6379/0")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND", "redis://redis:6379/1")
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 60 * 30
 
 
 # Database

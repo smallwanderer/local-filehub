@@ -273,7 +273,7 @@
 
             <nav class="navbar-nav">
                 {% block nav_items %}
-                <a href="{% url 'files:list' %}"
+                <a href="{% url 'files:index' %}"
                     class="{% if request.resolver_match.app_name == 'files' %}active{% endif %}">파일</a>
                 {% endblock %}
             </nav>

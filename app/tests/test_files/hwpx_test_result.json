@@ -1,0 +1,2343 @@
+{
+  "parser_mode": "convert_string_md",
+  "file_path": "c:\\Users\\a\\Desktop\\myfilehub\\app\\tests\\test_files\\hwpx_test.hwpx",
+  "file_ext": ".hwpx",
+  "chunks": [
+    {
+      "chunk_index": 0,
+      "serialized_text": "|                | 보도자료     | 2026. 3. 31. (화) 배포 즉시 보도 가능   |\n|----------------|--------------|-----------------------------------------|\n| 기후환경국     | 산림녹지과장 | 허정환                                  |\n| 한라생태숲팀장 | 양윤희       | ☎ 710-8681                              |\n| 숲에서 배우고 쉬고 치유한다…한라생태숲 산림복지 프로그램 강화- 전 연령 숲해설·유아숲교육 운영 중…산림치유 4월 17일 시작 -   |\n|-----------------------------------------------------------------------------------------------------------------------------|\n□제주특별자치도 한라생태숲이 도민과 관광객이 숲을 보다 깊이 이해하고 향유할 수 있도록 총사업비 2억 원을 투입해 산림복지서비스를 강화한다.\n□ 산림교육(숲해설·유아숲교육) 프로그램은 16일부터 운영 중이며, 산림치유 프로그램은 다음달 17일부터 시작된다. 분야별 전문 인력 7명을 배치해 체계적이고 전문적인 산림복지서비스를 제공한다.\n○ 산림교육 분야에서는 숲해설가 2명이 전 연령을 대상으로 숲해설 프로그램을 운영하고, 유아숲지도사 3명을 유아숲체험원에서 유아 눈높이에 맞춘 숲교육 프로그램을 진행한다.\n○ 산림치유 분야에서는 이번에 산림치유지도사 2명을 신규 배치해 기존 서귀포 치유의 숲에서만 운영되던 산림치유 프로그램을 제주시 지역까지 확대한다. 지역 간 산림복지서비스 격차를 해소하고 균형 있는 치유 프로그램을 제공하기 위한 조치다.\n□한라생태숲의 산림교육 프로그램은 2009년 개원 이후 꾸준히 운영되며 높은 호응을 이어왔다.\n○ 숲해설은 2010년, 유아숲교육은 2018년에 각각 시작해 현재까지 누적 참여자가 19만 7,000여 명에 달하며, 지난해에만 약 1만 명이 참여했다.\n○ 프로그램 참여자 대상 2025년 만족도 조사에서는 평균 98점 이상을 기록했다.\n□임홍철 제주도 기후환경국장은“제주의 대표 생태체험 공간인 한라생태숲을 활용한 산림복지서비스를 더욱 활성화해 도민과 탐방객의 바쁜 일상 속 쉼표 같은 공간이 될 수 있도록 노력하겠다”고 말했다.\n| 보조자료   |    | 산림교육 프로그램 사진 및 안내   |\n|------------|----|----------------------------------|\n○ 한라생태숲 산림복지프로그램 세부안내\n- 한라생태숲 누리집(https://www.jeju.go.kr/hallaecoforest/index.htm)\n| 분야                                            | 내용                                                     | 참여방법        | 문의                   |\n|-------------------------------------------------|----------------------------------------------------------|-----------------|------------------------|\n| 숲해설                                          | ○ 상시프로그램(매일 10시, 14시/화요일 오후 휴무)         | 누리집 사전예약 | 064-710-8690 또는 8685 |\n| ○ 주말 숲체험프로그램(매월 첫째주 토요일)       | 누리집 사전예약                                          |                 |                        |\n| 유아숲교육                                      | ○ 정기형 프로그램(주중 오전)○ 자율형 프로그램(주중 오후) | 전화예약        | 064-710-8695 또는 8685 |\n| ○ 주말 유아숲프로그램(매월 둘째, 넷째주 토요일) | 누리집 사전예약                                          |                 |                        |\n| 산림치유서비스                                  | ○ 산림치유프로그램(매주 금~일)                           | 누리집 사전예약 | 064-710-8685           |\n○ 한라생태숲 산림복지프로그램(유아숲교육) 운영 사진\n|    |\n|----|",
+      "tokens": 852,
+      "meta": {
+        "schema_name": "docling_core.transforms.chunker.DocMeta",
+        "version": "1.0.0",
+        "doc_items": [
+          {
+            "self_ref": "#/tables/0",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "table",
+            "prov": []
+          },
+          {
+            "self_ref": "#/tables/1",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "table",
+            "prov": []
+          },
+          {
+            "self_ref": "#/texts/0",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "text",
+            "prov": []
+          },
+          {
+            "self_ref": "#/texts/1",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "text",
+            "prov": []
+          },
+          {
+            "self_ref": "#/texts/2",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "text",
+            "prov": []
+          },
+          {
+            "self_ref": "#/texts/3",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "text",
+            "prov": []
+          },
+          {
+            "self_ref": "#/texts/4",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "text",
+            "prov": []
+          },
+          {
+            "self_ref": "#/texts/5",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "text",
+            "prov": []
+          },
+          {
+            "self_ref": "#/texts/6",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "text",
+            "prov": []
+          },
+          {
+            "self_ref": "#/texts/7",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "text",
+            "prov": []
+          },
+          {
+            "self_ref": "#/tables/2",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "table",
+            "prov": []
+          },
+          {
+            "self_ref": "#/texts/8",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "text",
+            "prov": []
+          },
+          {
+            "self_ref": "#/texts/9",
+            "parent": {
+              "cref": "#/groups/3"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "list_item",
+            "prov": []
+          },
+          {
+            "self_ref": "#/tables/3",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "table",
+            "prov": []
+          },
+          {
+            "self_ref": "#/texts/10",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "text",
+            "prov": []
+          },
+          {
+            "self_ref": "#/tables/4",
+            "parent": {
+              "cref": "#/body"
+            },
+            "children": [],
+            "content_layer": "body",
+            "meta": null,
+            "label": "table",
+            "prov": []
+          }
+        ],
+        "headings": null,
+        "captions": null,
+        "origin": {
+          "mimetype": "text/markdown",
+          "binary_hash": 18178461644969624533,
+          "filename": "hwpx_test.hwpx.md",
+          "uri": null
+        }
+      }
+    }
+  ],
+  "status": "success",
+  "timestamp": null,
+  "input_info": {
+    "file": "hwpx_test.hwpx.md",
+    "document_hash": "73ca1464b0180b0bb4c084cad0b3eb948fea382d788d4521fc46de8d6f7a43d5",
+    "valid": true,
+    "backend_options": null,
+    "limits": {
+      "max_num_pages": 9223372036854775807,
+      "max_file_size": 9223372036854775807,
+      "page_range": [
+        1,
+        9223372036854775807
+      ]
+    },
+    "format": "md",
+    "filesize": 3118,
+    "page_count": 0
+  },
+  "input_format": "md",
+  "input_file": "hwpx_test.hwpx.md",
+  "input_filesize": 3118,
+  "input_page_count": 0,
+  "input_document_hash": "73ca1464b0180b0bb4c084cad0b3eb948fea382d788d4521fc46de8d6f7a43d5",
+  "version_info": {
+    "docling_version": "2.81.0",
+    "docling_core_version": "2.70.2",
+    "docling_ibm_models_version": "3.12.0",
+    "docling_parse_version": "5.6.0",
+    "platform_str": "Windows-11-10.0.26200-SP0",
+    "py_impl_version": "cpython-312",
+    "py_lang_version": "3.12.10"
+  },
+  "parser_version": "2.81.0",
+  "docling_core_version": "2.70.2",
+  "docling_ibm_models_version": "3.12.0",
+  "docling_parse_version": "5.6.0",
+  "platform_str": "Windows-11-10.0.26200-SP0",
+  "py_impl_version": "cpython-312",
+  "py_lang_version": "3.12.10",
+  "detected_language": null,
+  "page_count": 0,
+  "pages": [],
+  "document": {
+    "schema_name": "DoclingDocument",
+    "version": "1.10.0",
+    "name": "hwpx_test.hwpx",
+    "origin": {
+      "mimetype": "text/markdown",
+      "binary_hash": 18178461644969624533,
+      "filename": "hwpx_test.hwpx.md",
+      "uri": null
+    },
+    "furniture": {
+      "self_ref": "#/furniture",
+      "parent": null,
+      "children": [],
+      "content_layer": "furniture",
+      "meta": null,
+      "name": "_root_",
+      "label": "unspecified"
+    },
+    "body": {
+      "self_ref": "#/body",
+      "parent": null,
+      "children": [
+        {
+          "cref": "#/groups/0"
+        },
+        {
+          "cref": "#/tables/0"
+        },
+        {
+          "cref": "#/groups/1"
+        },
+        {
+          "cref": "#/tables/1"
+        },
+        {
+          "cref": "#/texts/0"
+        },
+        {
+          "cref": "#/texts/1"
+        },
+        {
+          "cref": "#/texts/2"
+        },
+        {
+          "cref": "#/texts/3"
+        },
+        {
+          "cref": "#/texts/4"
+        },
+        {
+          "cref": "#/texts/5"
+        },
+        {
+          "cref": "#/texts/6"
+        },
+        {
+          "cref": "#/texts/7"
+        },
+        {
+          "cref": "#/groups/2"
+        },
+        {
+          "cref": "#/tables/2"
+        },
+        {
+          "cref": "#/texts/8"
+        },
+        {
+          "cref": "#/groups/3"
+        },
+        {
+          "cref": "#/groups/4"
+        },
+        {
+          "cref": "#/tables/3"
+        },
+        {
+          "cref": "#/texts/10"
+        },
+        {
+          "cref": "#/groups/5"
+        },
+        {
+          "cref": "#/tables/4"
+        }
+      ],
+      "content_layer": "body",
+      "meta": null,
+      "name": "_root_",
+      "label": "unspecified"
+    },
+    "groups": [
+      {
+        "self_ref": "#/groups/0",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "name": "group",
+        "label": "inline"
+      },
+      {
+        "self_ref": "#/groups/1",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "name": "group",
+        "label": "inline"
+      },
+      {
+        "self_ref": "#/groups/2",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "name": "group",
+        "label": "inline"
+      },
+      {
+        "self_ref": "#/groups/3",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [
+          {
+            "cref": "#/texts/9"
+          }
+        ],
+        "content_layer": "body",
+        "meta": null,
+        "name": "list",
+        "label": "list"
+      },
+      {
+        "self_ref": "#/groups/4",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "name": "group",
+        "label": "inline"
+      },
+      {
+        "self_ref": "#/groups/5",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "name": "group",
+        "label": "inline"
+      }
+    ],
+    "texts": [
+      {
+        "self_ref": "#/texts/0",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "text",
+        "prov": [],
+        "orig": "□제주특별자치도 한라생태숲이 도민과 관광객이 숲을 보다 깊이 이해하고 향유할 수 있도록 총사업비 2억 원을 투입해 산림복지서비스를 강화한다.",
+        "text": "□제주특별자치도 한라생태숲이 도민과 관광객이 숲을 보다 깊이 이해하고 향유할 수 있도록 총사업비 2억 원을 투입해 산림복지서비스를 강화한다.",
+        "formatting": null,
+        "hyperlink": null
+      },
+      {
+        "self_ref": "#/texts/1",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "text",
+        "prov": [],
+        "orig": "□ 산림교육(숲해설·유아숲교육) 프로그램은 16일부터 운영 중이며, 산림치유 프로그램은 다음달 17일부터 시작된다. 분야별 전문 인력 7명을 배치해 체계적이고 전문적인 산림복지서비스를 제공한다.",
+        "text": "□ 산림교육(숲해설·유아숲교육) 프로그램은 16일부터 운영 중이며, 산림치유 프로그램은 다음달 17일부터 시작된다. 분야별 전문 인력 7명을 배치해 체계적이고 전문적인 산림복지서비스를 제공한다.",
+        "formatting": null,
+        "hyperlink": null
+      },
+      {
+        "self_ref": "#/texts/2",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "text",
+        "prov": [],
+        "orig": "○ 산림교육 분야에서는 숲해설가 2명이 전 연령을 대상으로 숲해설 프로그램을 운영하고, 유아숲지도사 3명을 유아숲체험원에서 유아 눈높이에 맞춘 숲교육 프로그램을 진행한다.",
+        "text": "○ 산림교육 분야에서는 숲해설가 2명이 전 연령을 대상으로 숲해설 프로그램을 운영하고, 유아숲지도사 3명을 유아숲체험원에서 유아 눈높이에 맞춘 숲교육 프로그램을 진행한다.",
+        "formatting": null,
+        "hyperlink": null
+      },
+      {
+        "self_ref": "#/texts/3",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "text",
+        "prov": [],
+        "orig": "○ 산림치유 분야에서는 이번에 산림치유지도사 2명을 신규 배치해 기존 서귀포 치유의 숲에서만 운영되던 산림치유 프로그램을 제주시 지역까지 확대한다. 지역 간 산림복지서비스 격차를 해소하고 균형 있는 치유 프로그램을 제공하기 위한 조치다.",
+        "text": "○ 산림치유 분야에서는 이번에 산림치유지도사 2명을 신규 배치해 기존 서귀포 치유의 숲에서만 운영되던 산림치유 프로그램을 제주시 지역까지 확대한다. 지역 간 산림복지서비스 격차를 해소하고 균형 있는 치유 프로그램을 제공하기 위한 조치다.",
+        "formatting": null,
+        "hyperlink": null
+      },
+      {
+        "self_ref": "#/texts/4",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "text",
+        "prov": [],
+        "orig": "□한라생태숲의 산림교육 프로그램은 2009년 개원 이후 꾸준히 운영되며 높은 호응을 이어왔다.",
+        "text": "□한라생태숲의 산림교육 프로그램은 2009년 개원 이후 꾸준히 운영되며 높은 호응을 이어왔다.",
+        "formatting": null,
+        "hyperlink": null
+      },
+      {
+        "self_ref": "#/texts/5",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "text",
+        "prov": [],
+        "orig": "○ 숲해설은 2010년, 유아숲교육은 2018년에 각각 시작해 현재까지 누적 참여자가 19만 7,000여 명에 달하며, 지난해에만 약 1만 명이 참여했다.",
+        "text": "○ 숲해설은 2010년, 유아숲교육은 2018년에 각각 시작해 현재까지 누적 참여자가 19만 7,000여 명에 달하며, 지난해에만 약 1만 명이 참여했다.",
+        "formatting": null,
+        "hyperlink": null
+      },
+      {
+        "self_ref": "#/texts/6",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "text",
+        "prov": [],
+        "orig": "○ 프로그램 참여자 대상 2025년 만족도 조사에서는 평균 98점 이상을 기록했다.",
+        "text": "○ 프로그램 참여자 대상 2025년 만족도 조사에서는 평균 98점 이상을 기록했다.",
+        "formatting": null,
+        "hyperlink": null
+      },
+      {
+        "self_ref": "#/texts/7",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "text",
+        "prov": [],
+        "orig": "□임홍철 제주도 기후환경국장은“제주의 대표 생태체험 공간인 한라생태숲을 활용한 산림복지서비스를 더욱 활성화해 도민과 탐방객의 바쁜 일상 속 쉼표 같은 공간이 될 수 있도록 노력하겠다”고 말했다.",
+        "text": "□임홍철 제주도 기후환경국장은“제주의 대표 생태체험 공간인 한라생태숲을 활용한 산림복지서비스를 더욱 활성화해 도민과 탐방객의 바쁜 일상 속 쉼표 같은 공간이 될 수 있도록 노력하겠다”고 말했다.",
+        "formatting": null,
+        "hyperlink": null
+      },
+      {
+        "self_ref": "#/texts/8",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "text",
+        "prov": [],
+        "orig": "○ 한라생태숲 산림복지프로그램 세부안내",
+        "text": "○ 한라생태숲 산림복지프로그램 세부안내",
+        "formatting": null,
+        "hyperlink": null
+      },
+      {
+        "self_ref": "#/texts/9",
+        "parent": {
+          "cref": "#/groups/3"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "list_item",
+        "prov": [],
+        "orig": "한라생태숲 누리집(https://www.jeju.go.kr/hallaecoforest/index.htm)",
+        "text": "한라생태숲 누리집(https://www.jeju.go.kr/hallaecoforest/index.htm)",
+        "formatting": null,
+        "hyperlink": null,
+        "enumerated": false,
+        "marker": ""
+      },
+      {
+        "self_ref": "#/texts/10",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "text",
+        "prov": [],
+        "orig": "○ 한라생태숲 산림복지프로그램(유아숲교육) 운영 사진",
+        "text": "○ 한라생태숲 산림복지프로그램(유아숲교육) 운영 사진",
+        "formatting": null,
+        "hyperlink": null
+      }
+    ],
+    "pictures": [],
+    "tables": [
+      {
+        "self_ref": "#/tables/0",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "table",
+        "prov": [],
+        "captions": [],
+        "references": [],
+        "footnotes": [],
+        "image": null,
+        "data": {
+          "table_cells": [
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "보도자료",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "2026. 3. 31. (화) 배포 즉시 보도 가능",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "기후환경국",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "산림녹지과장",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "허정환",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 2,
+              "end_row_offset_idx": 3,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "한라생태숲팀장",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 2,
+              "end_row_offset_idx": 3,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "양윤희",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 2,
+              "end_row_offset_idx": 3,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "☎ 710-8681",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "보도자료",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "2026. 3. 31. (화) 배포 즉시 보도 가능",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "기후환경국",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "산림녹지과장",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "허정환",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 2,
+              "end_row_offset_idx": 3,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "한라생태숲팀장",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 2,
+              "end_row_offset_idx": 3,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "양윤희",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 2,
+              "end_row_offset_idx": 3,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "☎ 710-8681",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            }
+          ],
+          "num_rows": 3,
+          "num_cols": 3,
+          "grid": [
+            [
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 0,
+                "end_row_offset_idx": 1,
+                "start_col_offset_idx": 0,
+                "end_col_offset_idx": 1,
+                "text": "",
+                "column_header": true,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 0,
+                "end_row_offset_idx": 1,
+                "start_col_offset_idx": 1,
+                "end_col_offset_idx": 2,
+                "text": "보도자료",
+                "column_header": true,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 0,
+                "end_row_offset_idx": 1,
+                "start_col_offset_idx": 2,
+                "end_col_offset_idx": 3,
+                "text": "2026. 3. 31. (화) 배포 즉시 보도 가능",
+                "column_header": true,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              }
+            ],
+            [
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 1,
+                "end_row_offset_idx": 2,
+                "start_col_offset_idx": 0,
+                "end_col_offset_idx": 1,
+                "text": "기후환경국",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 1,
+                "end_row_offset_idx": 2,
+                "start_col_offset_idx": 1,
+                "end_col_offset_idx": 2,
+                "text": "산림녹지과장",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 1,
+                "end_row_offset_idx": 2,
+                "start_col_offset_idx": 2,
+                "end_col_offset_idx": 3,
+                "text": "허정환",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              }
+            ],
+            [
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 2,
+                "end_row_offset_idx": 3,
+                "start_col_offset_idx": 0,
+                "end_col_offset_idx": 1,
+                "text": "한라생태숲팀장",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 2,
+                "end_row_offset_idx": 3,
+                "start_col_offset_idx": 1,
+                "end_col_offset_idx": 2,
+                "text": "양윤희",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 2,
+                "end_row_offset_idx": 3,
+                "start_col_offset_idx": 2,
+                "end_col_offset_idx": 3,
+                "text": "☎ 710-8681",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              }
+            ]
+          ]
+        },
+        "annotations": []
+      },
+      {
+        "self_ref": "#/tables/1",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "table",
+        "prov": [],
+        "captions": [],
+        "references": [],
+        "footnotes": [],
+        "image": null,
+        "data": {
+          "table_cells": [
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "숲에서 배우고 쉬고 치유한다…한라생태숲 산림복지 프로그램 강화- 전 연령 숲해설·유아숲교육 운영 중…산림치유 4월 17일 시작 -",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "숲에서 배우고 쉬고 치유한다…한라생태숲 산림복지 프로그램 강화- 전 연령 숲해설·유아숲교육 운영 중…산림치유 4월 17일 시작 -",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            }
+          ],
+          "num_rows": 1,
+          "num_cols": 1,
+          "grid": [
+            [
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 0,
+                "end_row_offset_idx": 1,
+                "start_col_offset_idx": 0,
+                "end_col_offset_idx": 1,
+                "text": "숲에서 배우고 쉬고 치유한다…한라생태숲 산림복지 프로그램 강화- 전 연령 숲해설·유아숲교육 운영 중…산림치유 4월 17일 시작 -",
+                "column_header": true,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              }
+            ]
+          ]
+        },
+        "annotations": []
+      },
+      {
+        "self_ref": "#/tables/2",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "table",
+        "prov": [],
+        "captions": [],
+        "references": [],
+        "footnotes": [],
+        "image": null,
+        "data": {
+          "table_cells": [
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "보조자료",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "산림교육 프로그램 사진 및 안내",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "보조자료",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "산림교육 프로그램 사진 및 안내",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            }
+          ],
+          "num_rows": 1,
+          "num_cols": 3,
+          "grid": [
+            [
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 0,
+                "end_row_offset_idx": 1,
+                "start_col_offset_idx": 0,
+                "end_col_offset_idx": 1,
+                "text": "보조자료",
+                "column_header": true,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 0,
+                "end_row_offset_idx": 1,
+                "start_col_offset_idx": 1,
+                "end_col_offset_idx": 2,
+                "text": "",
+                "column_header": true,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 0,
+                "end_row_offset_idx": 1,
+                "start_col_offset_idx": 2,
+                "end_col_offset_idx": 3,
+                "text": "산림교육 프로그램 사진 및 안내",
+                "column_header": true,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              }
+            ]
+          ]
+        },
+        "annotations": []
+      },
+      {
+        "self_ref": "#/tables/3",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "table",
+        "prov": [],
+        "captions": [],
+        "references": [],
+        "footnotes": [],
+        "image": null,
+        "data": {
+          "table_cells": [
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "분야",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "내용",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "참여방법",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 3,
+              "end_col_offset_idx": 4,
+              "text": "문의",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "숲해설",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "○ 상시프로그램(매일 10시, 14시/화요일 오후 휴무)",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "누리집 사전예약",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 3,
+              "end_col_offset_idx": 4,
+              "text": "064-710-8690 또는 8685",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 2,
+              "end_row_offset_idx": 3,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "○ 주말 숲체험프로그램(매월 첫째주 토요일)",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 2,
+              "end_row_offset_idx": 3,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "누리집 사전예약",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 2,
+              "end_row_offset_idx": 3,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 2,
+              "end_row_offset_idx": 3,
+              "start_col_offset_idx": 3,
+              "end_col_offset_idx": 4,
+              "text": "",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 3,
+              "end_row_offset_idx": 4,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "유아숲교육",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 3,
+              "end_row_offset_idx": 4,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "○ 정기형 프로그램(주중 오전)○ 자율형 프로그램(주중 오후)",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 3,
+              "end_row_offset_idx": 4,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "전화예약",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 3,
+              "end_row_offset_idx": 4,
+              "start_col_offset_idx": 3,
+              "end_col_offset_idx": 4,
+              "text": "064-710-8695 또는 8685",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 4,
+              "end_row_offset_idx": 5,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "○ 주말 유아숲프로그램(매월 둘째, 넷째주 토요일)",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 4,
+              "end_row_offset_idx": 5,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "누리집 사전예약",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 4,
+              "end_row_offset_idx": 5,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 4,
+              "end_row_offset_idx": 5,
+              "start_col_offset_idx": 3,
+              "end_col_offset_idx": 4,
+              "text": "",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 5,
+              "end_row_offset_idx": 6,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "산림치유서비스",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 5,
+              "end_row_offset_idx": 6,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "○ 산림치유프로그램(매주 금~일)",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 5,
+              "end_row_offset_idx": 6,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "누리집 사전예약",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 5,
+              "end_row_offset_idx": 6,
+              "start_col_offset_idx": 3,
+              "end_col_offset_idx": 4,
+              "text": "064-710-8685",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "분야",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "내용",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "참여방법",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 3,
+              "end_col_offset_idx": 4,
+              "text": "문의",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "숲해설",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "○ 상시프로그램(매일 10시, 14시/화요일 오후 휴무)",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "누리집 사전예약",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 3,
+              "end_col_offset_idx": 4,
+              "text": "064-710-8690 또는 8685",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 2,
+              "end_row_offset_idx": 3,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "○ 주말 숲체험프로그램(매월 첫째주 토요일)",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 2,
+              "end_row_offset_idx": 3,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "누리집 사전예약",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 2,
+              "end_row_offset_idx": 3,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 2,
+              "end_row_offset_idx": 3,
+              "start_col_offset_idx": 3,
+              "end_col_offset_idx": 4,
+              "text": "",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 3,
+              "end_row_offset_idx": 4,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "유아숲교육",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 3,
+              "end_row_offset_idx": 4,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "○ 정기형 프로그램(주중 오전)○ 자율형 프로그램(주중 오후)",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 3,
+              "end_row_offset_idx": 4,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "전화예약",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 3,
+              "end_row_offset_idx": 4,
+              "start_col_offset_idx": 3,
+              "end_col_offset_idx": 4,
+              "text": "064-710-8695 또는 8685",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 4,
+              "end_row_offset_idx": 5,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "○ 주말 유아숲프로그램(매월 둘째, 넷째주 토요일)",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 4,
+              "end_row_offset_idx": 5,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "누리집 사전예약",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 4,
+              "end_row_offset_idx": 5,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 4,
+              "end_row_offset_idx": 5,
+              "start_col_offset_idx": 3,
+              "end_col_offset_idx": 4,
+              "text": "",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 5,
+              "end_row_offset_idx": 6,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "산림치유서비스",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 5,
+              "end_row_offset_idx": 6,
+              "start_col_offset_idx": 1,
+              "end_col_offset_idx": 2,
+              "text": "○ 산림치유프로그램(매주 금~일)",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 5,
+              "end_row_offset_idx": 6,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "누리집 사전예약",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 5,
+              "end_row_offset_idx": 6,
+              "start_col_offset_idx": 3,
+              "end_col_offset_idx": 4,
+              "text": "064-710-8685",
+              "column_header": false,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            }
+          ],
+          "num_rows": 6,
+          "num_cols": 4,
+          "grid": [
+            [
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 0,
+                "end_row_offset_idx": 1,
+                "start_col_offset_idx": 0,
+                "end_col_offset_idx": 1,
+                "text": "분야",
+                "column_header": true,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 0,
+                "end_row_offset_idx": 1,
+                "start_col_offset_idx": 1,
+                "end_col_offset_idx": 2,
+                "text": "내용",
+                "column_header": true,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 0,
+                "end_row_offset_idx": 1,
+                "start_col_offset_idx": 2,
+                "end_col_offset_idx": 3,
+                "text": "참여방법",
+                "column_header": true,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 0,
+                "end_row_offset_idx": 1,
+                "start_col_offset_idx": 3,
+                "end_col_offset_idx": 4,
+                "text": "문의",
+                "column_header": true,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              }
+            ],
+            [
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 1,
+                "end_row_offset_idx": 2,
+                "start_col_offset_idx": 0,
+                "end_col_offset_idx": 1,
+                "text": "숲해설",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 1,
+                "end_row_offset_idx": 2,
+                "start_col_offset_idx": 1,
+                "end_col_offset_idx": 2,
+                "text": "○ 상시프로그램(매일 10시, 14시/화요일 오후 휴무)",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 1,
+                "end_row_offset_idx": 2,
+                "start_col_offset_idx": 2,
+                "end_col_offset_idx": 3,
+                "text": "누리집 사전예약",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 1,
+                "end_row_offset_idx": 2,
+                "start_col_offset_idx": 3,
+                "end_col_offset_idx": 4,
+                "text": "064-710-8690 또는 8685",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              }
+            ],
+            [
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 2,
+                "end_row_offset_idx": 3,
+                "start_col_offset_idx": 0,
+                "end_col_offset_idx": 1,
+                "text": "○ 주말 숲체험프로그램(매월 첫째주 토요일)",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 2,
+                "end_row_offset_idx": 3,
+                "start_col_offset_idx": 1,
+                "end_col_offset_idx": 2,
+                "text": "누리집 사전예약",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 2,
+                "end_row_offset_idx": 3,
+                "start_col_offset_idx": 2,
+                "end_col_offset_idx": 3,
+                "text": "",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 2,
+                "end_row_offset_idx": 3,
+                "start_col_offset_idx": 3,
+                "end_col_offset_idx": 4,
+                "text": "",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              }
+            ],
+            [
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 3,
+                "end_row_offset_idx": 4,
+                "start_col_offset_idx": 0,
+                "end_col_offset_idx": 1,
+                "text": "유아숲교육",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 3,
+                "end_row_offset_idx": 4,
+                "start_col_offset_idx": 1,
+                "end_col_offset_idx": 2,
+                "text": "○ 정기형 프로그램(주중 오전)○ 자율형 프로그램(주중 오후)",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 3,
+                "end_row_offset_idx": 4,
+                "start_col_offset_idx": 2,
+                "end_col_offset_idx": 3,
+                "text": "전화예약",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 3,
+                "end_row_offset_idx": 4,
+                "start_col_offset_idx": 3,
+                "end_col_offset_idx": 4,
+                "text": "064-710-8695 또는 8685",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              }
+            ],
+            [
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 4,
+                "end_row_offset_idx": 5,
+                "start_col_offset_idx": 0,
+                "end_col_offset_idx": 1,
+                "text": "○ 주말 유아숲프로그램(매월 둘째, 넷째주 토요일)",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 4,
+                "end_row_offset_idx": 5,
+                "start_col_offset_idx": 1,
+                "end_col_offset_idx": 2,
+                "text": "누리집 사전예약",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 4,
+                "end_row_offset_idx": 5,
+                "start_col_offset_idx": 2,
+                "end_col_offset_idx": 3,
+                "text": "",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 4,
+                "end_row_offset_idx": 5,
+                "start_col_offset_idx": 3,
+                "end_col_offset_idx": 4,
+                "text": "",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              }
+            ],
+            [
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 5,
+                "end_row_offset_idx": 6,
+                "start_col_offset_idx": 0,
+                "end_col_offset_idx": 1,
+                "text": "산림치유서비스",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 5,
+                "end_row_offset_idx": 6,
+                "start_col_offset_idx": 1,
+                "end_col_offset_idx": 2,
+                "text": "○ 산림치유프로그램(매주 금~일)",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 5,
+                "end_row_offset_idx": 6,
+                "start_col_offset_idx": 2,
+                "end_col_offset_idx": 3,
+                "text": "누리집 사전예약",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              },
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 5,
+                "end_row_offset_idx": 6,
+                "start_col_offset_idx": 3,
+                "end_col_offset_idx": 4,
+                "text": "064-710-8685",
+                "column_header": false,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              }
+            ]
+          ]
+        },
+        "annotations": []
+      },
+      {
+        "self_ref": "#/tables/4",
+        "parent": {
+          "cref": "#/body"
+        },
+        "children": [],
+        "content_layer": "body",
+        "meta": null,
+        "label": "table",
+        "prov": [],
+        "captions": [],
+        "references": [],
+        "footnotes": [],
+        "image": null,
+        "data": {
+          "table_cells": [
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            },
+            {
+              "bbox": null,
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 1,
+              "text": "",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false
+            }
+          ],
+          "num_rows": 1,
+          "num_cols": 1,
+          "grid": [
+            [
+              {
+                "bbox": null,
+                "row_span": 1,
+                "col_span": 1,
+                "start_row_offset_idx": 0,
+                "end_row_offset_idx": 1,
+                "start_col_offset_idx": 0,
+                "end_col_offset_idx": 1,
+                "text": "",
+                "column_header": true,
+                "row_header": false,
+                "row_section": false,
+                "fillable": false
+              }
+            ]
+          ]
+        },
+        "annotations": []
+      }
+    ],
+    "key_value_items": [],
+    "form_items": [],
+    "pages": {}
+  },
+  "errors": [],
+  "timings": {},
+  "confidence": {
+    "parse_score": null,
+    "layout_score": null,
+    "table_score": null,
+    "ocr_score": null,
+    "pages": {},
+    "mean_grade": "unspecified",
+    "low_grade": "unspecified",
+    "mean_score": null,
+    "low_score": null
+  },
+  "assembled": {
+    "elements": [],
+    "body": [],
+    "headers": []
+  }
+}

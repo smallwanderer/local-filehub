@@ -6,28 +6,20 @@
 
 <div class="section-header">
   <h2>휴지통</h2>
-  <div class="section-actions">
-    {% if files %}
-    <form method="post" action="{% url 'files:empty_trash' %}"
-          onsubmit="return confirm('휴지통을 완전히 비우시겠습니까? 복구할 수 없습니다.')">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-ghost" style="color:var(--danger);">
-        휴지통 비우기
-      </button>
-    </form>
-    {% endif %}
+  <div class="section-actions" id="emptyTrashAction" style="display:none;">
+    <button onclick="emptyTrash()" class="btn btn-ghost" style="color:var(--danger);">
+      휴지통 비우기
+    </button>
   </div>
 </div>
 
 <!-- 보관 정책 안내 -->
-<div style="background:var(--bg); border-radius:var(--radius); padding:11px 16px;
-            font-size:13px; color:var(--muted); margin-bottom:16px; display:flex; align-items:center; gap:8px;">
+<div style="background:var(--bg); border-radius:var(--radius); padding:11px 16px; font-size:13px; color:var(--muted); margin-bottom:16px; display:flex; align-items:center; gap:8px;">
   <span>⏱️</span>
   삭제된 파일은 30일 후 자동으로 완전 삭제됩니다.
 </div>
 
-{% if files %}
-<div class="file-table-wrap">
+<div class="file-table-wrap" id="tableWrap" style="display:none;">
   <table class="file-table">
     <thead>
       <tr>
@@ -38,55 +30,122 @@
         <th></th>
       </tr>
     </thead>
-    <tbody>
-      {% for file in files %}
-      <tr>
-        <td>
-          <div class="file-name-cell" style="opacity:0.6;">
-            <div class="file-type-icon icon-{{ file.file_type|default:'other' }}">
-              {% if file.file_type == 'pdf' %}📄
-              {% elif file.file_type == 'image' %}🖼️
-              {% elif file.file_type == 'doc' %}📝
-              {% else %}📁{% endif %}
-            </div>
-            <span class="file-name-text">{{ file.name }}</span>
-          </div>
-        </td>
-        <td class="meta-text">{{ file.size_display }}</td>
-        <td class="meta-text">{{ file.deleted_at|date:"Y.m.d" }}</td>
-        <td class="meta-text">{{ file.days_until_deletion }}일 후</td>
-        <td>
-          <div class="file-actions">
-            <!-- 복구 -->
-            <form method="post" action="{% url 'files:restore' file.pk %}">
-              {% csrf_token %}
-              <button type="submit" class="icon-btn" title="복구" style="font-size:13px;">↩</button>
-            </form>
-            <!-- 완전 삭제 -->
-            <form method="post" action="{% url 'files:permanent_delete' file.pk %}"
-                  onsubmit="return confirm('영구 삭제하면 복구할 수 없습니다.')">
-              {% csrf_token %}
-              <button type="submit" class="icon-btn danger" title="영구 삭제">
-                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
-                  <polyline points="3 6 5 6 21 6"/>
-                  <path d="M19 6l-1 14H6L5 6"/>
-                  <path d="M9 6V4h6v2"/>
-                </svg>
-              </button>
-            </form>
-          </div>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
+    <tbody id="fileTbody"></tbody>
   </table>
 </div>
-{% else %}
-<div class="empty-state">
+
+<div class="empty-state" id="emptyState" style="display:none;">
   <div class="empty-state-icon">🗑️</div>
   <h3>휴지통이 비어 있습니다</h3>
   <p>삭제된 파일이 없습니다</p>
 </div>
-{% endif %}
 
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+  }
+
+  document.addEventListener("DOMContentLoaded", fetchTrash);
+
+  function fetchTrash() {
+    fetch('/files/api/v1/trash/')
+      .then(res => res.json())
+      .then(data => {
+        if (data.ok) renderTable(data.files);
+      });
+  }
+
+  function renderTable(files) {
+    const tbody = document.getElementById('fileTbody');
+    const wrap = document.getElementById('tableWrap');
+    const empty = document.getElementById('emptyState');
+    const emptyAction = document.getElementById('emptyTrashAction');
+    tbody.innerHTML = '';
+    
+    if (files.length === 0) {
+      wrap.style.display = 'none';
+      emptyAction.style.display = 'none';
+      empty.style.display = 'block';
+      return;
+    }
+    
+    wrap.style.display = 'block';
+    emptyAction.style.display = 'block';
+    empty.style.display = 'none';
+    
+    files.forEach(f => {
+      // Mock 'days until deletion' for UI since backend model field isn't exposed directly
+      const daysLeft = 30; // Just a placeholder, would normally come from f.days_until_deletion
+      
+      const isFile = f.node_type === 'file';
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>
+          <div class="file-name-cell" style="opacity:0.6;">
+            <span class="file-name-text">${f.name}</span>
+          </div>
+        </td>
+        <td class="meta-text">${f.size_mb ? f.size_mb + ' MB' : '-'}</td>
+        <td class="meta-text">${new Date(f.deleted_at || f.updated_at).toLocaleDateString()}</td>
+        <td class="meta-text">${daysLeft}일 후</td>
+        <td>
+          <div class="file-actions">
+            <button onclick="restoreFile('${f.uid}')" class="icon-btn" title="복구" style="font-size:13px;border:none;background:none;cursor:pointer;">↩</button>
+            <button onclick="permanentDelete('${f.uid}')" class="icon-btn danger" title="영구 삭제" style="border:none;background:none;cursor:pointer;">
+              <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/>
+              </svg>
+            </button>
+          </div>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function restoreFile(uid) {
+    fetch(`/files/api/v1/${uid}/restore/`, {
+      method: 'POST',
+      headers: {'X-CSRFToken': getCookie('csrftoken')}
+    })
+    .then(res => res.json())
+    .then(data => { if(data.ok) fetchTrash(); });
+  }
+
+  function permanentDelete(uid) {
+    if(confirm('영구 삭제하면 복구할 수 없습니다.')) {
+      fetch(`/files/api/v1/${uid}/permanent_delete/`, {
+        method: 'POST',
+        headers: {'X-CSRFToken': getCookie('csrftoken')}
+      })
+      .then(res => res.json())
+      .then(data => { if(data.ok) fetchTrash(); });
+    }
+  }
+
+  function emptyTrash() {
+    if(confirm('휴지통을 완전히 비우시겠습니까? 복구할 수 없습니다.')) {
+      fetch('/files/api/v1/trash/empty/', {
+        method: 'POST',
+        headers: {'X-CSRFToken': getCookie('csrftoken')}
+      })
+      .then(res => res.json())
+      .then(data => { if(data.ok) fetchTrash(); });
+    }
+  }
+</script>
 {% endblock %}

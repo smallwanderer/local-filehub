@@ -6,11 +6,10 @@
 
 <div class="section-header">
   <h2>최근 파일</h2>
-  <span class="meta-text">최근 7일 · {{ files|length }}개</span>
+  <span class="meta-text" id="fileCount">최근 7일 · 0개</span>
 </div>
 
-{% if files %}
-<div class="file-table-wrap">
+<div class="file-table-wrap" id="tableWrap" style="display:none;">
   <table class="file-table">
     <thead>
       <tr>
@@ -21,46 +20,71 @@
         <th></th>
       </tr>
     </thead>
-    <tbody>
-      {% for file in files %}
-      <tr>
-        <td>
-          <a href="{% url 'files:detail' file.pk %}" class="file-name-cell">
-            <div class="file-type-icon icon-{{ file.file_type|default:'other' }}">
-              {% if file.file_type == 'pdf' %}📄
-              {% elif file.file_type == 'image' %}🖼️
-              {% elif file.file_type == 'doc' %}📝
-              {% else %}📁{% endif %}
-            </div>
-            <span class="file-name-text">{{ file.name }}</span>
-          </a>
-        </td>
-        <td class="meta-text">{{ file.file_type|upper|default:"기타" }}</td>
-        <td class="meta-text">{{ file.size_display }}</td>
-        <td class="meta-text">{{ file.uploaded_at|date:"Y.m.d H:i" }}</td>
-        <td>
-          <div class="file-actions">
-            <a href="{{ file.file.url }}" download class="icon-btn" title="다운로드">
-              <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
-              </svg>
-            </a>
-          </div>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
+    <tbody id="fileTbody"></tbody>
   </table>
 </div>
-{% else %}
-<div class="empty-state">
+
+<div class="empty-state" id="emptyState" style="display:none;">
   <div class="empty-state-icon">🕐</div>
   <h3>최근 파일이 없습니다</h3>
   <p>최근 7일 내에 업로드된 파일이 없습니다</p>
-  <a href="{% url 'files:upload' %}" class="btn btn-primary">파일 업로드</a>
+  <a href="{% url 'files:page_upload' %}" class="btn btn-primary">파일 업로드</a>
 </div>
-{% endif %}
 
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", fetchRecent);
+
+  function fetchRecent() {
+    fetch('/files/api/v1/recent/')
+      .then(res => res.json())
+      .then(data => {
+        if (data.ok) renderTable(data.files);
+      });
+  }
+
+  function renderTable(files) {
+    document.getElementById('fileCount').textContent = `최근 7일 · ${files.length}개`;
+    const tbody = document.getElementById('fileTbody');
+    const wrap = document.getElementById('tableWrap');
+    const empty = document.getElementById('emptyState');
+    tbody.innerHTML = '';
+    
+    if (files.length === 0) {
+      wrap.style.display = 'none';
+      empty.style.display = 'block';
+      return;
+    }
+    
+    wrap.style.display = 'block';
+    empty.style.display = 'none';
+    
+    files.forEach(f => {
+      const isFile = f.node_type === 'file';
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>
+          <div class="file-name-cell">
+            <span class="file-name-text">${f.name}</span>
+          </div>
+        </td>
+        <td class="meta-text">${isFile ? '파일' : '폴더'}</td>
+        <td class="meta-text">${f.size_mb ? f.size_mb + ' MB' : '-'}</td>
+        <td class="meta-text">${new Date(f.created_at).toLocaleDateString()}</td>
+        <td>
+          <div class="file-actions">
+            ${isFile ? `<a href="/files/api/v1/${f.uid}/download/" class="icon-btn" title="다운로드" download>
+              <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+            </a>` : ''}
+          </div>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+</script>
 {% endblock %}

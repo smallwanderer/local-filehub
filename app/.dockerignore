@@ -40,3 +40,6 @@ htmlcov/
 Dockerfile
 docker-compose.yml
 .dockerignore
+
+# 7. 캐시 폴더
+.cache/

@@ -92,7 +92,7 @@ def verification_required_view(request):
         return redirect("accounts:login")
 
     if request.user.email_verified:
-        return redirect("files:list")
+        return redirect("files:index")
 
     return render(request, "accounts/verification_required.html")
 

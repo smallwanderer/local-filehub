@@ -14,6 +14,10 @@ def calculate_sha256(file):
     
     return sha256.hexdigest()
 
+def extract_ext(name):
+    return os.path.splitext(name)[1]
+
+
 def generate_unique_name(name):
-    ext = os.path.splitext(name)[1]
+    ext = extract_ext(name)
     return f"uploads/{uuid.uuid4()}{ext}"
